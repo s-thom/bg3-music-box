@@ -2,6 +2,17 @@ import "./style.css";
 
 const INSTRUMENTS = ["voice", "flute", "violin", "lute", "lyre", "drum"];
 
+// const songGroup = document.querySelector("fieldset[name=songs]")!;
+const songButtons = Array.from(
+  document.querySelectorAll<HTMLInputElement>("input[name=song]")
+);
+const instrumentGroup = document.querySelector("fieldset[name=instruments]")!;
+const instrumentCheckboxes = Array.from(
+  document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
+);
+
+let audioElements: HTMLAudioElement[] = [];
+
 async function setSong(id: string) {
   console.log("song", { id });
 
@@ -19,39 +30,76 @@ async function setSong(id: string) {
     });
 
     const audio = new Audio(`/music/${id}_${instrument}.ogg`);
-    // @ts-ignore: resolve is set in the Promise constructor
+    audio.id = `audio_${instrument}`;
+    audio.volume = 0;
+    audio.loop = true;
     audio.addEventListener("canplay", () => resolve(audio));
-    // @ts-ignore: resolve is set in the Promise constructor
     audio.addEventListener("canplaythrough", () => resolve(audio));
-    // @ts-ignore: reject is set in the Promise constructor
-    audio.addEventListener("error", reject);
+    audio.addEventListener("error", () => reject());
 
     audioContainer.appendChild(audio);
 
     return promise;
   });
 
-  const audioElements = await Promise.all(loadPromises);
-  audioElements.forEach((audio) => audio.play());
+  // Turn on the instruments that have their checkboxes selected already
+  const selectedInstrumentCheckboxes = instrumentCheckboxes.filter(
+    (checkbox) => checkbox.checked
+  );
+  selectedInstrumentCheckboxes.forEach((instrumentCheckbox) => {
+    const audio = document.querySelector<HTMLAudioElement>(
+      `#audio_${instrumentCheckbox.value}`
+    )!;
+    audio.volume = 1;
+  });
+
+  instrumentGroup.setAttribute("disabled", "");
+  audioElements = await Promise.all(loadPromises);
+  instrumentGroup.removeAttribute("disabled");
+
+  // Start playing immediately if there are any instruments already selected
+  if (selectedInstrumentCheckboxes.length > 0) {
+    audioElements.forEach((audio) => audio.play());
+  }
 }
 
-function toggleInstrument(event: Event) {
-  console.log("toggleInstrument", { value: (event.target as any)?.value });
+function setInstrumentPlaying(id: string, isPlaying: boolean) {
+  console.log("toggleInstrument", { id, isPlaying });
+
+  const audio = document.querySelector<HTMLAudioElement>(`#audio_${id}`)!;
+  audio.volume = isPlaying ? 1 : 0;
+
+  // Start playing if this is the only instrument and this has just been enabled
+  const selectedInstrumentCheckboxes = instrumentCheckboxes.filter(
+    (checkbox) => checkbox.checked
+  );
+  if (isPlaying && selectedInstrumentCheckboxes.length === 1) {
+    audioElements.forEach((audio) => audio.play());
+  }
+
+  // Stop playing if there are no more instruments enabled
+  if (!isPlaying && selectedInstrumentCheckboxes.length === 0) {
+    audioElements.forEach((audio) => {
+      audio.currentTime = -1;
+      audio.pause();
+    });
+  }
 }
 
 function attachListeners() {
-  document
-    .querySelectorAll<HTMLInputElement>("input[name=song]")
-    .forEach((songInput) =>
-      songInput.addEventListener("change", (event) =>
-        setSong((event.target as HTMLInputElement).value)
+  songButtons.forEach((button) =>
+    button.addEventListener("change", (event) =>
+      setSong((event.target as HTMLInputElement).value)
+    )
+  );
+  instrumentCheckboxes.forEach((checkbox) =>
+    checkbox.addEventListener("change", (event) =>
+      setInstrumentPlaying(
+        (event.target as HTMLInputElement).value,
+        (event.target as HTMLInputElement).checked
       )
-    );
-  document
-    .querySelectorAll<HTMLInputElement>("input[name=instrument]")
-    .forEach((instrumentInput) =>
-      instrumentInput.addEventListener("change", toggleInstrument)
-    );
+    )
+  );
 }
 
 attachListeners();

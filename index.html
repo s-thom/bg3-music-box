@@ -5,9 +5,14 @@
     <link rel="icon" type="image/png" href="/icons/bdinspiration.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BG3 Bard Player</title>
-    <script type="module" src="/src/main.ts" async></script>
+    <script type="module" src="/src/main.ts" defer></script>
+    <link rel="reload" as="image/webp" href="/images/BG3_Exploration.webp" />
   </head>
   <body>
+    <picture>
+      <source src="/images/BG3_Exploration.webp" type="image/webp" />
+      <img class="background" src="/images/BG3_Exploration.jpg" alt="" />
+    </picture>
     <div id="audio"></div>
     <div id="app">
       <noscript>
@@ -19,8 +24,8 @@
           </p>
         </div>
       </noscript>
-      <form>
-        <fieldset>
+      <form autocomplete="off">
+        <fieldset name="songs">
           <legend>Song</legend>
           <label class="option">
             <input
@@ -91,7 +96,7 @@
             The Queen&apos;s High Seas
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset name="instruments">
           <legend>Instruments</legend>
           <label class="option">
             <input

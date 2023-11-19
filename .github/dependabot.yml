@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "17:30"
+      timezone: "Pacific/Auckland"
+    groups:
+      all:
+        patterns:
+          - "*"
