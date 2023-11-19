@@ -4,10 +4,119 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>BG3 Bard Player</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="audio"></div>
+    <div id="app">
+      <noscript>
+        <div class="noscript-warning">
+          <p>
+            This site requires Javascript in order to keep the music tracks in
+            sync with each other. You&apos;re welcome to stick around and click
+            some buttons, they&apos;re just not going to do anything.
+          </p>
+        </div>
+      </noscript>
+      <form>
+        <fieldset>
+          <legend>Song</legend>
+          <label class="option">
+            <input
+              type="radio"
+              name="song"
+              id="song_the-power"
+              value="the-power"
+            />
+            <img class="icon" src="/icons/song_the-power.png" alt="" />
+            The Power
+          </label>
+          <label class="option">
+            <input
+              type="radio"
+              name="song"
+              id="song_old-time-battles"
+              value="old-time-battles"
+            />
+            <img class="icon" src="/icons/song_old-time-battles.png" alt="" />
+            Old Time Battles
+          </label>
+          <label class="option">
+            <input
+              type="radio"
+              name="song"
+              id="song_bard-dance"
+              value="bard-dance"
+            />
+            <img class="icon" src="/icons/song_bard-dance.png" alt="" />
+            Bard Dance
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Instruments</legend>
+          <label class="option">
+            <input
+              type="checkbox"
+              name="instrument"
+              id="instrument_voice"
+              value="voice"
+            />
+            <img class="icon" src="/icons/instrument_voice.png" alt="" />
+            Whistling
+          </label>
+          <label class="option">
+            <input
+              type="checkbox"
+              name="instrument"
+              id="instrument_flute"
+              value="flute"
+            />
+            <img class="icon" src="/icons/instrument_flute.png" alt="" />
+            Flute
+          </label>
+          <label class="option">
+            <input
+              type="checkbox"
+              name="instrument"
+              id="instrument_violin"
+              value="violin"
+            />
+            <img class="icon" src="/icons/instrument_violin.png" alt="" />
+            Violin
+          </label>
+          <label class="option">
+            <input
+              type="checkbox"
+              name="instrument"
+              id="instrument_lute"
+              value="lute"
+            />
+            <img class="icon" src="/icons/instrument_lute.png" alt="" />
+            Lute
+          </label>
+          <label class="option">
+            <input
+              type="checkbox"
+              name="instrument"
+              id="instrument_lyre"
+              value="lyre"
+            />
+            <img class="icon" src="/icons/instrument_lyre.png" alt="" />
+            Lyre
+          </label>
+          <label class="option">
+            <input
+              type="checkbox"
+              name="instrument"
+              id="instrument_drum"
+              value="drum"
+            />
+            <img class="icon" src="/icons/instrument_drum.png" alt="" />
+            Drum
+          </label>
+        </fieldset>
+      </form>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
