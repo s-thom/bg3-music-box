@@ -18,7 +18,7 @@ async function setSong(id: string) {
       reject = rej;
     });
 
-    const audio = new Audio(`/music/${id}_${instrument}.wav`);
+    const audio = new Audio(`/music/${id}_${instrument}.ogg`);
     // @ts-ignore: resolve is set in the Promise constructor
     audio.addEventListener("canplay", () => resolve(audio));
     // @ts-ignore: resolve is set in the Promise constructor
