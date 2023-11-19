@@ -50,6 +50,7 @@ img.background {
   height: 100vh;
   height: 100lvh;
   z-index: -1;
+  object-fit: cover;
 }
 
 form {
