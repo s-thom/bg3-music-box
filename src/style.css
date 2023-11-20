@@ -12,6 +12,13 @@
   font-weight: 400;
   src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro-Italic.ttf) format("truetype");
 }
+@font-face {
+  font-family: "Quadraat Offc Pro";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro-Bold.ttf) format("truetype");
+}
 
 :root {
   font-family: "Quadraat Offc Pro", Garamond, serif;
@@ -120,9 +127,52 @@ a.text-highlight:hover {
   text-decoration: underline;
 }
 
+.bold {
+  font-weight: 600;
+}
+
+fieldset {
+  display: grid;
+  margin: 0;
+  margin-top: 16px;
+  padding: 0;
+  gap: 8px;
+  border: none;
+  grid-template-columns: repeat(2, 1fr);
+  color: #eae1cc;
+}
+
 .option {
   display: flex;
-  gap: 12px;
+  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input:focus + .option,
+.option:hover {
+  border: 2px solid #232221;
+  background: #1f1e1d40;
+}
+
+.option:active,
+.input:checked + .option {
+  border: 2px solid #1f1e1d;
+  background: #1f1e1d80;
+}
+
+.input {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .icon {
@@ -156,6 +206,10 @@ img.spell {
 
   .description {
     margin-right: 48px;
+  }
+
+  fieldset {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
