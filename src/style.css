@@ -19,7 +19,7 @@
   font-weight: 400;
 
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #fffcf0;
   background-color: #262628;
 
   font-synthesis: none;
@@ -41,7 +41,6 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,10 +60,10 @@ img.background {
   object-fit: cover;
 }
 
-form {
+.tooltip {
   position: relative;
   background:
-    linear-gradient(0deg, #38383b, #38383b) padding-box,
+    linear-gradient(90deg, #2a2928 15%, #322f2b, #2a2928 85%) padding-box,
     conic-gradient(
         #6d4629 0deg,
         #8d602e,
@@ -81,10 +80,44 @@ form {
   border: 3px solid transparent;
   border-radius: 10px;
   box-shadow:
-    inset 0 0 16px 16px rgba(35, 35, 37, 0.7),
+    inset 0 0 8px 8px rgba(35, 35, 37, 0.7),
     0 0 16px 16px rgba(35, 35, 37, 0.4);
   width: 400px;
   max-width: 400px;
+  padding: 16px;
+}
+
+.title {
+  margin: 0;
+  margin-right: 48px;
+  font-weight: 400;
+}
+
+.item-text {
+  margin: 8px 24px 8px 0;
+  display: flex;
+}
+.item-icon {
+  width: 24px;
+  height: 24px;
+}
+.description {
+  margin: 8px 16px 8px 0;
+  margin: 0;
+  font-style: italic;
+  color: #717171;
+}
+
+.noscript .description {
+  color: #f4b135;
+}
+
+.text-highlight {
+  color: #e6dba0;
+  text-decoration: none;
+}
+a.text-highlight:hover {
+  text-decoration: underline;
 }
 
 .option {
@@ -106,7 +139,7 @@ img.spell {
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(33%, -33%);
+  transform: translate(15%, -15%);
   width: 64px;
   height: 64px;
 }
@@ -116,6 +149,14 @@ img.spell {
     width: 98px;
     height: 98px;
   }
+
+  .title {
+    margin-right: 64px;
+  }
+
+  .description {
+    margin-right: 48px;
+  }
 }
 
 @media (min-width: 900px) {
@@ -123,11 +164,19 @@ img.spell {
     width: 128px;
     height: 128px;
   }
+
+  .description {
+    margin-right: 80px;
+  }
+
+  .tooltip {
+    width: 500px;
+    max-width: 500px;
+  }
 }
 
-.noscript-warning {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #47420c;
-  border: 2px solid #69620e;
-  border-radius: 4px;
-}
+/* @media (prefers-contrast: more) {
+  .description {
+    color: #fffcf0;
+  }
+} */

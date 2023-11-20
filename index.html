@@ -39,16 +39,30 @@
     </picture>
     <div id="audio"></div>
     <div id="app">
-      <noscript>
-        <div class="noscript-warning">
-          <p>
-            This site requires Javascript in order to keep the music tracks in
-            sync with each other. You&apos;re welcome to stick around and click
-            some buttons, they&apos;re just not going to do anything.
+      <form class="tooltip" autocomplete="off">
+        <h1 class="title">BG3 Bard Simulator</h1>
+        <div class="item-text">
+          <img class="item-icon" src="/icons/scroll.png" alt="" />
+          <p class="description">
+            Used by bards across Faerûn, this magical device produces sounds
+            much like their instruments but without all the preparation.
           </p>
         </div>
-      </noscript>
-      <form autocomplete="off">
+        <noscript>
+          <div class="item-text noscript">
+            <img class="item-icon" src="/icons/warning.png" alt="Warning" />
+            <p class="description">
+              This site requires
+              <a
+                class="text-highlight"
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+              >
+                Javascript</a
+              >
+              in order to keep the music tracks in sync with each other.
+            </p>
+          </div>
+        </noscript>
         <picture>
           <source
             srcset="
