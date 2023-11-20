@@ -102,4 +102,8 @@ function attachListeners() {
   );
 }
 
-attachListeners();
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", attachListeners);
+} else {
+  attachListeners();
+}
