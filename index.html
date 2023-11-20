@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BG3 Bard Player</title>
     <script type="module" src="/src/main.ts" async></script>
-    <link rel="reload" as="image/webp" href="/images/BG3_Exploration.webp" />
   </head>
   <body>
     <picture>
@@ -31,7 +30,12 @@
         type="image/webp"
         media="(orientation: portrait)"
       />
-      <img class="background" src="/images/BG3_Exploration.jpg" alt="" />
+      <img
+        class="background"
+        src="/images/BG3_Exploration.jpg"
+        alt=""
+        fetchpriority="high"
+      />
     </picture>
     <div id="audio"></div>
     <div id="app">
@@ -45,6 +49,30 @@
         </div>
       </noscript>
       <form autocomplete="off">
+        <picture>
+          <source
+            srcset="
+              /icons/spell_bardic-inspiration_64.png  1x,
+              /icons/spell_bardic-inspiration_128.png 2x,
+              /icons/spell_bardic-inspiration_256.png 4x
+            "
+            type="image/png"
+            media="(max-width: 900px)"
+          />
+          <source
+            srcset="
+              /icons/spell_bardic-inspiration_64.png  1x,
+              /icons/spell_bardic-inspiration_128.png 1x,
+              /icons/spell_bardic-inspiration_256.png 2x
+            "
+            type="image/png"
+          />
+          <img
+            class="spell"
+            src="/icons/spell_bardic-inspiration_128.png"
+            alt=""
+          />
+        </picture>
         <fieldset name="songs">
           <legend>Song</legend>
           <label class="option">
