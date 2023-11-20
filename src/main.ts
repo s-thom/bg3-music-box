@@ -2,11 +2,11 @@ import "./style.css";
 
 const INSTRUMENTS = ["voice", "flute", "violin", "lute", "lyre", "drum"];
 
-// const songGroup = document.querySelector("fieldset[name=songs]")!;
+const songGroup = document.querySelector("fieldset[name=songs]")!;
 const songButtons = Array.from(
   document.querySelectorAll<HTMLInputElement>("input[name=song]")
 );
-const instrumentGroup = document.querySelector("fieldset[name=instruments]")!;
+// const instrumentGroup = document.querySelector("fieldset[name=instruments]")!;
 const instrumentCheckboxes = Array.from(
   document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
 );
@@ -42,6 +42,10 @@ async function setSong(id: string) {
     return promise;
   });
 
+  songGroup.setAttribute("disabled", "");
+  audioElements = await Promise.all(loadPromises);
+  songGroup.removeAttribute("disabled");
+
   // Turn on the instruments that have their checkboxes selected already
   const selectedInstrumentCheckboxes = instrumentCheckboxes.filter(
     (checkbox) => checkbox.checked
@@ -52,10 +56,6 @@ async function setSong(id: string) {
     )!;
     audio.volume = 1;
   });
-
-  instrumentGroup.setAttribute("disabled", "");
-  audioElements = await Promise.all(loadPromises);
-  instrumentGroup.removeAttribute("disabled");
 
   // Start playing immediately if there are any instruments already selected
   if (selectedInstrumentCheckboxes.length > 0) {

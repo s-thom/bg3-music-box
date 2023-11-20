@@ -10,7 +10,27 @@
   </head>
   <body>
     <picture>
-      <source src="/images/BG3_Exploration.webp" type="image/webp" />
+      <source
+        srcset="
+          /images/BG3_Exploration_landscape_720.webp  1280w,
+          /images/BG3_Exploration_landscape_1080.webp 1920w,
+          /images/BG3_Exploration_landscape_2160.webp 3840w
+        "
+        sizes="(max-width: 3840px) 100vw, 3840px"
+        type="image/webp"
+        media="(orientation: landscape)"
+      />
+      <source
+        srcset="
+          /images/BG3_Exploration_portrait_480.webp   480w,
+          /images/BG3_Exploration_portrait_720.webp   720w,
+          /images/BG3_Exploration_portrait_1200.webp 1200w,
+          /images/BG3_Exploration_portrait_1080.webp 1080w
+        "
+        sizes="(max-width: 1080px) 100vw, 1080px"
+        type="image/webp"
+        media="(orientation: portrait)"
+      />
       <img class="background" src="/images/BG3_Exploration.jpg" alt="" />
     </picture>
     <div id="audio"></div>
@@ -34,7 +54,17 @@
               id="song_the-power"
               value="the-power"
             />
-            <img class="icon" src="/icons/song_the-power.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/song_the-power_32.png  1x,
+                  /icons/song_the-power_64.png  2x,
+                  /icons/song_the-power_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/song_the-power.png" alt="" />
+            </picture>
             The Power
           </label>
           <label class="option">
@@ -44,7 +74,17 @@
               id="song_old-time-battles"
               value="old-time-battles"
             />
-            <img class="icon" src="/icons/song_old-time-battles.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/song_old-time-battles_32.png  1x,
+                  /icons/song_old-time-battles_64.png  2x,
+                  /icons/song_old-time-battles_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/song_old-time-battles.png" alt="" />
+            </picture>
             Old Time Battles
           </label>
           <label class="option">
@@ -54,7 +94,17 @@
               id="song_bard-dance"
               value="bard-dance"
             />
-            <img class="icon" src="/icons/song_bard-dance.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/song_bard-dance_32.png  1x,
+                  /icons/song_bard-dance_64.png  2x,
+                  /icons/song_bard-dance_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/song_bard-dance.png" alt="" />
+            </picture>
             Bard Dance
           </label>
           <label class="option">
@@ -64,11 +114,21 @@
               id="song_of-divinity-and-sin"
               value="of-divinity-and-sin"
             />
-            <img
-              class="icon"
-              src="/icons/song_of-divinity-and-sin.png"
-              alt=""
-            />
+            <picture>
+              <source
+                srcset="
+                  /icons/song_of-divinity-and-sin_32.png  1x,
+                  /icons/song_of-divinity-and-sin_64.png  2x,
+                  /icons/song_of-divinity-and-sin_128.png 4x
+                "
+                type="image/png"
+              />
+              <img
+                class="icon"
+                src="/icons/song_of-divinity-and-sin.png"
+                alt=""
+              />
+            </picture>
             Of Divinity and Sin
           </label>
           <label class="option">
@@ -78,7 +138,17 @@
               id="song_sing-for-me"
               value="sing-for-me"
             />
-            <img class="icon" src="/icons/song_sing-for-me.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/song_sing-for-me_32.png  1x,
+                  /icons/song_sing-for-me_64.png  2x,
+                  /icons/song_sing-for-me_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/song_sing-for-me.png" alt="" />
+            </picture>
             Sing for Me
           </label>
           <label class="option">
@@ -88,11 +158,21 @@
               id="song_the-queens-high-seas"
               value="the-queens-high-seas"
             />
-            <img
-              class="icon"
-              src="/icons/song_the-queens-high-seas.png"
-              alt=""
-            />
+            <picture>
+              <source
+                srcset="
+                  /icons/song_the-queens-high-seas_32.png  1x,
+                  /icons/song_the-queens-high-seas_64.png  2x,
+                  /icons/song_the-queens-high-seas_128.png 4x
+                "
+                type="image/png"
+              />
+              <img
+                class="icon"
+                src="/icons/song_the-queens-high-seas.png"
+                alt=""
+              />
+            </picture>
             The Queen&apos;s High Seas
           </label>
         </fieldset>
@@ -105,7 +185,17 @@
               id="instrument_voice"
               value="voice"
             />
-            <img class="icon" src="/icons/instrument_voice.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/instrument_voice_32.png  1x,
+                  /icons/instrument_voice_64.png  2x,
+                  /icons/instrument_voice_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/instrument_voice.png" alt="" />
+            </picture>
             Whistling
           </label>
           <label class="option">
@@ -115,7 +205,17 @@
               id="instrument_flute"
               value="flute"
             />
-            <img class="icon" src="/icons/instrument_flute.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/instrument_flute_32.png  1x,
+                  /icons/instrument_flute_64.png  2x,
+                  /icons/instrument_flute_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/instrument_flute.png" alt="" />
+            </picture>
             Flute
           </label>
           <label class="option">
@@ -125,7 +225,17 @@
               id="instrument_violin"
               value="violin"
             />
-            <img class="icon" src="/icons/instrument_violin.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/instrument_violin_32.png  1x,
+                  /icons/instrument_violin_64.png  2x,
+                  /icons/instrument_violin_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/instrument_violin.png" alt="" />
+            </picture>
             Violin
           </label>
           <label class="option">
@@ -135,7 +245,17 @@
               id="instrument_lute"
               value="lute"
             />
-            <img class="icon" src="/icons/instrument_lute.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/instrument_lute_32.png  1x,
+                  /icons/instrument_lute_64.png  2x,
+                  /icons/instrument_lute_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/instrument_lute.png" alt="" />
+            </picture>
             Lute
           </label>
           <label class="option">
@@ -145,7 +265,17 @@
               id="instrument_lyre"
               value="lyre"
             />
-            <img class="icon" src="/icons/instrument_lyre.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/instrument_lyre_32.png  1x,
+                  /icons/instrument_lyre_64.png  2x,
+                  /icons/instrument_lyre_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/instrument_lyre_64.png" alt="" />
+            </picture>
             Lyre
           </label>
           <label class="option">
@@ -155,7 +285,17 @@
               id="instrument_drum"
               value="drum"
             />
-            <img class="icon" src="/icons/instrument_drum.png" alt="" />
+            <picture>
+              <source
+                srcset="
+                  /icons/instrument_drum_32.png  1x,
+                  /icons/instrument_drum_64.png  2x,
+                  /icons/instrument_drum_128.png 4x
+                "
+                type="image/png"
+              />
+              <img class="icon" src="/icons/instrument_drum_32.png" alt="" />
+            </picture>
             Drum
           </label>
         </fieldset>
