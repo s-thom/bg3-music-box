@@ -4,6 +4,7 @@
   font-display: swap;
   font-weight: 400;
   src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro.ttf) format("truetype");
+  unicode-range: U+000-5FF;
 }
 @font-face {
   font-family: "Quadraat Offc Pro";
@@ -11,6 +12,7 @@
   font-display: swap;
   font-weight: 400;
   src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro-Italic.ttf) format("truetype");
+  unicode-range: U+000-5FF;
 }
 @font-face {
   font-family: "Quadraat Offc Pro";
@@ -18,10 +20,11 @@
   font-display: swap;
   font-weight: 600;
   src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro-Bold.ttf) format("truetype");
+  unicode-range: U+000-5FF;
 }
 
 :root {
-  font-family: "Quadraat Offc Pro", Garamond, serif;
+  font-family: "Quadraat Offc Pro", Garamond, Georgia, serif;
   line-height: 1.5;
   font-weight: 400;
 
