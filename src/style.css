@@ -87,19 +87,22 @@ img.background {
         #6d4629 360deg
       )
       border-box;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   border-radius: 10px;
   box-shadow:
     inset 0 0 8px 8px rgba(35, 35, 37, 0.7),
     0 0 16px 16px rgba(35, 35, 37, 0.4);
   width: 400px;
   max-width: 400px;
-  padding: 16px;
 }
 
-.title {
-  margin: 0;
-  margin-right: 48px;
+.tooltip > :not(.no-bleed) {
+  margin: 0 16px;
+}
+
+.title.title {
+  margin-top: 8px;
+  margin-right: 56px;
   font-weight: 400;
 }
 
@@ -111,9 +114,9 @@ img.background {
   width: 24px;
   height: 24px;
 }
-.description {
-  margin: 8px 16px 8px 0;
+.description.description {
   margin: 0;
+  margin-right: 16px;
   font-style: italic;
   color: #717171;
 }
@@ -197,17 +200,53 @@ img.spell {
   height: 64px;
 }
 
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin-top: 16px;
+  background: radial-gradient(
+      ellipse 80% 150% at bottom left,
+      #3e284c 15%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 80% 150% at bottom right,
+      #3e284c 15%,
+      transparent 100%
+    ),
+    linear-gradient(90deg, #20201c, #20201c);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.footer::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -100%);
+  content: " ";
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(to top, #3e284c60, transparent);
+}
+
+.footer-text {
+  height: 1em;
+}
+
 @media (min-width: 400px) {
   img.spell {
     width: 98px;
     height: 98px;
   }
 
-  .title {
-    margin-right: 64px;
+  .title.title {
+    margin-right: 80px;
   }
 
-  .description {
+  .description.description {
     margin-right: 48px;
   }
 
@@ -222,7 +261,11 @@ img.spell {
     height: 128px;
   }
 
-  .description {
+  .title.title {
+    margin-right: 112px;
+  }
+
+  .description.description {
     margin-right: 80px;
   }
 
