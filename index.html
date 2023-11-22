@@ -85,26 +85,28 @@
             </p>
           </div>
         </noscript>
-        <div class="player-controls no-bleed">
-          <!-- <button
-            type="button"
-            class="control-button"
-            id="controls-prev"
-            disabled
-          >
-            skip back
-          </button> -->
-          <button
-            type="button"
-            class="control-button"
-            id="controls-play"
-            disabled
-          >
-            play/pause
-          </button>
-          <div id="now-playing" class="hidden">
+        <div class="callout no-bleed">
+          <div class="player-controls">
+            <!-- <button
+              type="button"
+              class="control-button"
+              id="controls-prev"
+              disabled
+            >
+              skip back
+            </button> -->
+            <button
+              type="button"
+              class="sprite control-button control-play"
+              id="controls-play"
+              disabled
+            >
+              <span class="visually-hidden">Play / Pause</span>
+            </button>
+          </div>
+          <div id="now-playing">
             <span class="text-highlight bold">Playing:</span>
-            <span id="now-playing-text"></span>
+            <span id="now-playing-text">Nothing, yet...</span>
           </div>
         </div>
         <picture class="no-bleed">
@@ -136,7 +138,7 @@
             <span class="text-highlight bold">Song:</span> Select one
           </legend>
           <input
-            class="input"
+            class="input visually-hidden"
             type="radio"
             name="song"
             id="song_the-power"
@@ -157,7 +159,7 @@
             <span id="label_the-power">The Power</span>
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="radio"
             name="song"
             id="song_old-time-battles"
@@ -178,7 +180,7 @@
             <span id="label_old-time-battles">Old Time Battles</span>
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="radio"
             name="song"
             id="song_bard-dance"
@@ -199,7 +201,7 @@
             <span id="label_bard-dance">Bard Dance</span>
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="radio"
             name="song"
             id="song_of-divinity-and-sin"
@@ -224,7 +226,7 @@
             <span id="label_of-divinity-and-sin">Of Divinity and Sin</span>
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="radio"
             name="song"
             id="song_sing-for-me"
@@ -245,7 +247,7 @@
             <span id="label_sing-for-me">Sing for Me</span>
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="radio"
             name="song"
             id="song_the-queens-high-seas"
@@ -278,7 +280,7 @@
             more
           </legend>
           <input
-            class="input"
+            class="input visually-hidden"
             type="checkbox"
             name="instrument"
             id="instrument_flute"
@@ -299,7 +301,7 @@
             Flute
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="checkbox"
             name="instrument"
             id="instrument_lute"
@@ -320,7 +322,7 @@
             Lute
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="checkbox"
             name="instrument"
             id="instrument_lyre"
@@ -341,7 +343,7 @@
             Lyre
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="checkbox"
             name="instrument"
             id="instrument_violin"
@@ -362,7 +364,7 @@
             Violin
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="checkbox"
             name="instrument"
             id="instrument_drum"
@@ -383,7 +385,7 @@
             Drum
           </label>
           <input
-            class="input"
+            class="input visually-hidden"
             type="checkbox"
             name="instrument"
             id="instrument_voice"

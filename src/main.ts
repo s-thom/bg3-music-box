@@ -29,6 +29,15 @@ function setControlsEnabledState(enabled: boolean) {
 function setIsPlaying(playing: boolean) {
   isPlaying = playing;
 
+  const playButton = document.querySelector("#controls-play")!;
+  if (isPlaying) {
+    playButton.classList.add("control-pause");
+    playButton.classList.remove("control-play");
+  } else {
+    playButton.classList.remove("control-pause");
+    playButton.classList.add("control-play");
+  }
+
   getAllAudio().forEach((audio) => {
     if (isPlaying) {
       audio.play();
@@ -36,10 +45,6 @@ function setIsPlaying(playing: boolean) {
       audio.pause();
     }
   });
-
-  if (isPlaying) {
-    document.querySelector("#now-playing")!.classList.remove("hidden");
-  }
 }
 
 async function setSong(id: string) {
@@ -47,11 +52,10 @@ async function setSong(id: string) {
   setIsPlaying(false);
   currentSong = id;
 
-  // Update label, but hide it until we're actually playing
+  // Update label
   const songLabel = document.querySelector(`#label_${id}`);
   const nowPlayingLabel = document.querySelector("#now-playing-text")!;
   nowPlayingLabel.textContent = songLabel!.textContent;
-  document.querySelector("#now-playing")!.classList.add("hidden");
 
   const audioContainer = document.querySelector("#audio")!;
   audioContainer
@@ -119,6 +123,7 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
 
   if (!isInstrumentPlaying && selectedInstrumentCheckboxes.length === 0) {
     setIsPlaying(false);
+    setControlsEnabledState(false);
   }
 
   // Enable the controls if there is at least one instrument enabled and there's a song selected
