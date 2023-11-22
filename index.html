@@ -85,7 +85,29 @@
             </p>
           </div>
         </noscript>
-        <picture>
+        <div class="player-controls no-bleed">
+          <!-- <button
+            type="button"
+            class="control-button"
+            id="controls-prev"
+            disabled
+          >
+            skip back
+          </button> -->
+          <button
+            type="button"
+            class="control-button"
+            id="controls-play"
+            disabled
+          >
+            play/pause
+          </button>
+          <div id="now-playing" class="hidden">
+            <span class="text-highlight bold">Playing:</span>
+            <span id="now-playing-text"></span>
+          </div>
+        </div>
+        <picture class="no-bleed">
           <source
             srcset="
               /icons/spell_bardic-inspiration_64.png  1x,
@@ -132,7 +154,7 @@
               />
               <img class="icon" src="/icons/song_the-power.png" alt="" />
             </picture>
-            The Power
+            <span id="label_the-power">The Power</span>
           </label>
           <input
             class="input"
@@ -153,7 +175,7 @@
               />
               <img class="icon" src="/icons/song_old-time-battles.png" alt="" />
             </picture>
-            Old Time Battles
+            <span id="label_old-time-battles">Old Time Battles</span>
           </label>
           <input
             class="input"
@@ -174,7 +196,7 @@
               />
               <img class="icon" src="/icons/song_bard-dance.png" alt="" />
             </picture>
-            Bard Dance
+            <span id="label_bard-dance">Bard Dance</span>
           </label>
           <input
             class="input"
@@ -199,7 +221,7 @@
                 alt=""
               />
             </picture>
-            Of Divinity and Sin
+            <span id="label_of-divinity-and-sin">Of Divinity and Sin</span>
           </label>
           <input
             class="input"
@@ -220,7 +242,7 @@
               />
               <img class="icon" src="/icons/song_sing-for-me.png" alt="" />
             </picture>
-            Sing for Me
+            <span id="label_sing-for-me">Sing for Me</span>
           </label>
           <input
             class="input"
@@ -245,7 +267,9 @@
                 alt=""
               />
             </picture>
-            The Queen&apos;s High Seas
+            <span id="label_the-queens-high-seas"
+              >The Queen&apos;s High Seas</span
+            >
           </label>
         </fieldset>
         <fieldset name="instruments">

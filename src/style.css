@@ -60,6 +60,10 @@ body {
   display: none;
 }
 
+.hidden {
+  display: none;
+}
+
 img.background {
   position: fixed;
   width: 100vw;
@@ -123,6 +127,16 @@ img.background {
 
 .noscript .description {
   color: #f4b135;
+}
+
+.player-controls {
+  margin: 16px 0;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: #fffcf020;
 }
 
 .text-highlight {
