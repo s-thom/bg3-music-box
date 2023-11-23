@@ -282,7 +282,7 @@ fieldset {
   padding: 0;
   border: none;
 
-  background: url(./img/spritesheet.png);
+  background: url(/icons/spritesheet.png);
 
   --ratio-width: calc(var(--extrinsic-width) / var(--sprite-width));
   --ratio-height: calc(var(--extrinsic-height) / var(--sprite-height));
