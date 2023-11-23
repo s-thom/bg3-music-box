@@ -26,6 +26,13 @@
       type="font/ttf"
       crossorigin
     />
+    <link
+      rel="preload"
+      href="/fonts/QuadraatOffcPro/QuadraatOffcPro-Bold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <script type="module" src="/src/main.ts" async></script>
   </head>
   <body>
@@ -63,7 +70,7 @@
       <form class="tooltip" autocomplete="off">
         <h1 class="title">BG3 Music Box</h1>
         <div class="item-text">
-          <img class="item-icon" src="/icons/scroll.png" alt="" />
+          <div class="sprite detail-icon detail-icon_scroll"></div>
           <p class="description">
             Used by bards across Faerûn, this magical device produces sounds
             much like their instruments but without all the preparation.
@@ -71,7 +78,7 @@
         </div>
         <noscript>
           <div class="item-text noscript">
-            <img class="item-icon" src="/icons/warning.png" alt="Warning" />
+            <div class="sprite detail-icon detail-icon_warning"></div>
             <p class="description">
               This site requires
               <a
@@ -109,30 +116,12 @@
             <span id="now-playing-text">Nothing, yet...</span>
           </div>
         </div>
-        <picture class="no-bleed">
-          <source
-            srcset="
-              /icons/spell_bardic-inspiration_64.png  1x,
-              /icons/spell_bardic-inspiration_128.png 2x,
-              /icons/spell_bardic-inspiration_256.png 4x
-            "
-            type="image/png"
-            media="(max-width: 900px)"
-          />
-          <source
-            srcset="
-              /icons/spell_bardic-inspiration_64.png  1x,
-              /icons/spell_bardic-inspiration_128.png 1x,
-              /icons/spell_bardic-inspiration_256.png 2x
-            "
-            type="image/png"
-          />
-          <img
-            class="spell"
-            src="/icons/spell_bardic-inspiration_128.png"
-            alt=""
-          />
-        </picture>
+        <button
+          type="button"
+          aria-label="Change icon"
+          class="no-bleed sprite big-icon big-icon_bardic-inspiration"
+          id="big-icon"
+        ></button>
         <fieldset name="songs">
           <legend>
             <span class="text-highlight bold">Song:</span> Select one
@@ -145,17 +134,7 @@
             value="the-power"
           />
           <label for="song_the-power" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/song_the-power_32.png  1x,
-                  /icons/song_the-power_64.png  2x,
-                  /icons/song_the-power_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/song_the-power.png" alt="" />
-            </picture>
+            <div class="sprite song-icon song-icon_the-power"></div>
             <span id="label_the-power">The Power</span>
           </label>
           <input
@@ -166,17 +145,7 @@
             value="old-time-battles"
           />
           <label for="song_old-time-battles" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/song_old-time-battles_32.png  1x,
-                  /icons/song_old-time-battles_64.png  2x,
-                  /icons/song_old-time-battles_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/song_old-time-battles.png" alt="" />
-            </picture>
+            <div class="sprite song-icon song-icon_old-time-battles"></div>
             <span id="label_old-time-battles">Old Time Battles</span>
           </label>
           <input
@@ -187,17 +156,7 @@
             value="bard-dance"
           />
           <label for="song_bard-dance" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/song_bard-dance_32.png  1x,
-                  /icons/song_bard-dance_64.png  2x,
-                  /icons/song_bard-dance_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/song_bard-dance.png" alt="" />
-            </picture>
+            <div class="sprite song-icon song-icon_bard-dance"></div>
             <span id="label_bard-dance">Bard Dance</span>
           </label>
           <input
@@ -208,21 +167,7 @@
             value="of-divinity-and-sin"
           />
           <label for="song_of-divinity-and-sin" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/song_of-divinity-and-sin_32.png  1x,
-                  /icons/song_of-divinity-and-sin_64.png  2x,
-                  /icons/song_of-divinity-and-sin_128.png 4x
-                "
-                type="image/png"
-              />
-              <img
-                class="icon"
-                src="/icons/song_of-divinity-and-sin.png"
-                alt=""
-              />
-            </picture>
+            <div class="sprite song-icon song-icon_of-divinity-and-sin"></div>
             <span id="label_of-divinity-and-sin">Of Divinity and Sin</span>
           </label>
           <input
@@ -233,17 +178,7 @@
             value="sing-for-me"
           />
           <label for="song_sing-for-me" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/song_sing-for-me_32.png  1x,
-                  /icons/song_sing-for-me_64.png  2x,
-                  /icons/song_sing-for-me_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/song_sing-for-me.png" alt="" />
-            </picture>
+            <div class="sprite song-icon song-icon_sing-for-me"></div>
             <span id="label_sing-for-me">Sing for Me</span>
           </label>
           <input
@@ -254,21 +189,7 @@
             value="the-queens-high-seas"
           />
           <label for="song_the-queens-high-seas" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/song_the-queens-high-seas_32.png  1x,
-                  /icons/song_the-queens-high-seas_64.png  2x,
-                  /icons/song_the-queens-high-seas_128.png 4x
-                "
-                type="image/png"
-              />
-              <img
-                class="icon"
-                src="/icons/song_the-queens-high-seas.png"
-                alt=""
-              />
-            </picture>
+            <div class="sprite song-icon song-icon_the-queens-high-seas"></div>
             <span id="label_the-queens-high-seas"
               >The Queen&apos;s High Seas</span
             >
@@ -287,18 +208,8 @@
             value="flute"
           />
           <label for="instrument_flute" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/instrument_flute_32.png  1x,
-                  /icons/instrument_flute_64.png  2x,
-                  /icons/instrument_flute_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/instrument_flute.png" alt="" />
-            </picture>
-            Flute
+            <div class="sprite instrument-icon instrument-icon_flute"></div>
+            <span>Flute</span>
           </label>
           <input
             class="input visually-hidden"
@@ -308,18 +219,8 @@
             value="lute"
           />
           <label for="instrument_lute" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/instrument_lute_32.png  1x,
-                  /icons/instrument_lute_64.png  2x,
-                  /icons/instrument_lute_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/instrument_lute.png" alt="" />
-            </picture>
-            Lute
+            <div class="sprite instrument-icon instrument-icon_lute"></div>
+            <span>Lute</span>
           </label>
           <input
             class="input visually-hidden"
@@ -329,18 +230,8 @@
             value="lyre"
           />
           <label for="instrument_lyre" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/instrument_lyre_32.png  1x,
-                  /icons/instrument_lyre_64.png  2x,
-                  /icons/instrument_lyre_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/instrument_lyre_64.png" alt="" />
-            </picture>
-            Lyre
+            <div class="sprite instrument-icon instrument-icon_lyre"></div>
+            <span>Lyre</span>
           </label>
           <input
             class="input visually-hidden"
@@ -350,18 +241,8 @@
             value="violin"
           />
           <label for="instrument_violin" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/instrument_violin_32.png  1x,
-                  /icons/instrument_violin_64.png  2x,
-                  /icons/instrument_violin_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/instrument_violin.png" alt="" />
-            </picture>
-            Violin
+            <div class="sprite instrument-icon instrument-icon_violin"></div>
+            <span>Violin</span>
           </label>
           <input
             class="input visually-hidden"
@@ -371,18 +252,8 @@
             value="drum"
           />
           <label for="instrument_drum" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/instrument_drum_32.png  1x,
-                  /icons/instrument_drum_64.png  2x,
-                  /icons/instrument_drum_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/instrument_drum_32.png" alt="" />
-            </picture>
-            Drum
+            <div class="sprite instrument-icon instrument-icon_drum"></div>
+            <span>Drum</span>
           </label>
           <input
             class="input visually-hidden"
@@ -392,22 +263,12 @@
             value="voice"
           />
           <label for="instrument_voice" class="option">
-            <picture>
-              <source
-                srcset="
-                  /icons/instrument_voice_32.png  1x,
-                  /icons/instrument_voice_64.png  2x,
-                  /icons/instrument_voice_128.png 4x
-                "
-                type="image/png"
-              />
-              <img class="icon" src="/icons/instrument_voice.png" alt="" />
-            </picture>
-            Whistling
+            <div class="sprite instrument-icon instrument-icon_voice"></div>
+            <span>Whistling</span>
           </label>
         </fieldset>
         <footer class="footer no-bleed">
-          <img class="item-icon" src="/icons/flask.png" alt="" />
+          <div class="sprite detail-icon detail-icon_flask"></div>
           <span class="footer-text"
             >Made by
             <a

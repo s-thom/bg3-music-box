@@ -2,6 +2,12 @@ import "./style.css";
 
 const INSTRUMENTS = ["voice", "flute", "violin", "lute", "lyre", "drum"];
 
+const BIG_ICONS = [
+  "bardic-inspiration",
+  "restore-bardic-inspiration",
+  "song-of-rest",
+];
+
 let isPlaying = false;
 let currentSong = "";
 
@@ -132,6 +138,23 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
   }
 }
 
+function cycleBigIcon() {
+  const button = document.querySelector<HTMLAudioElement>("#big-icon")!;
+  const currentIconIndex = BIG_ICONS.findIndex((name) =>
+    button.classList.contains(`big-icon_${name}`)
+  );
+
+  if (currentIconIndex === -1) {
+    return;
+  }
+
+  const currentIcon = BIG_ICONS[currentIconIndex];
+  const nextIcon = BIG_ICONS[(currentIconIndex + 1) % BIG_ICONS.length];
+
+  button.classList.remove(`big-icon_${currentIcon}`);
+  button.classList.add(`big-icon_${nextIcon}`);
+}
+
 function attachListeners() {
   const songButtons = Array.from(
     document.querySelectorAll<HTMLInputElement>("input[name=song]")
@@ -141,6 +164,7 @@ function attachListeners() {
   );
   // const prevButton = document.querySelector("#controls-prev")!;
   const playButton = document.querySelector("#controls-play")!;
+  const bigIcon = document.querySelector<HTMLAudioElement>("#big-icon")!;
 
   songButtons.forEach((button) =>
     button.addEventListener("change", (event) =>
@@ -157,6 +181,7 @@ function attachListeners() {
   );
 
   playButton.addEventListener("click", () => setIsPlaying(!isPlaying));
+  bigIcon.addEventListener("click", () => cycleBigIcon());
 }
 
 if (document.readyState === "loading") {

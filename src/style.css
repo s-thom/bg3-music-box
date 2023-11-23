@@ -123,9 +123,8 @@ img.background {
   margin: 8px 24px 8px 0;
   display: flex;
 }
-.item-icon {
-  width: 24px;
-  height: 24px;
+.item-text .detail-icon {
+  flex-shrink: 0;
 }
 .description.description {
   margin: 0;
@@ -212,25 +211,6 @@ fieldset {
   width: 1px;
 }
 
-.icon {
-  width: 2em;
-  height: 2em;
-  transition: filter 0.05s ease-in-out;
-}
-
-:disabled .icon {
-  filter: opacity(0.5);
-}
-
-img.spell {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(15%, -15%);
-  width: 64px;
-  height: 64px;
-}
-
 .footer {
   position: relative;
   display: flex;
@@ -267,10 +247,189 @@ img.spell {
   height: 1em;
 }
 
+/* 
+  The spritesheet system probably needs explaining.
+
+  The sheet itself has two variables:
+
+  * --spritesheet-<width|height>: 
+      length (pixels)
+      The size of the spritesheet.
+      Used to properly scale any sprites on the sheet.
+
+  Each sprite is defined by 4 variables:
+
+  * --sprite-<width|height>: 
+      number (no units)
+      The size of the image in the sheet.
+  * --sprite-<top|left>: 
+      number (no units)
+      Where the image is on the sheet
+
+  Additionally, there are two more variables to determine how it displays
+  
+  * --extrinsic-<width|height>: 
+      number (no units)
+      The expected width/height of the element.
+      Used to properly scale the image.
+*/
+.sprite {
+  --spritesheet-width: 512px;
+  --spritesheet-height: 512px;
+
+  width: calc(var(--extrinsic-width) * 1px);
+  height: calc(var(--extrinsic-height) * 1px);
+  padding: 0;
+  border: none;
+
+  background: url(./img/spritesheet.png);
+
+  --ratio-width: calc(var(--extrinsic-width) / var(--sprite-width));
+  --ratio-height: calc(var(--extrinsic-height) / var(--sprite-height));
+
+  --bg-position-left: calc(var(--sprite-left) * var(--ratio-width) * -1px);
+  --bg-position-top: calc(var(--sprite-top) * var(--ratio-height) * -1px);
+
+  background-position: var(--bg-position-left) var(--bg-position-top);
+
+  background-size: calc(var(--spritesheet-width) * var(--ratio-width))
+    calc(var(--spritesheet-height) * var(--ratio-height));
+}
+
+.big-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(15%, -15%) rotate(0deg) scale(1, 1);
+  background-color: transparent;
+  border: none;
+
+  transition: transform 0.1s ease-in-out;
+
+  --extrinsic-width: 64;
+  --extrinsic-height: 64;
+  --sprite-top: 128;
+  --sprite-left: 0;
+  --sprite-width: 128;
+  --sprite-height: 128;
+}
+.big-icon:hover {
+  transform: translate(15%, -15%) rotate(2deg) scale(1, 1);
+}
+.big-icon:active {
+  transform: translate(15%, -15%) rotate(2deg) scale(0.97, 0.97);
+}
+.big-icon_bardic-inspiration {
+  --sprite-left: 0;
+}
+.big-icon_restore-bardic-inspiration {
+  --sprite-left: 128;
+}
+.big-icon_song-of-rest {
+  --sprite-left: 256;
+}
+
+.detail-icon {
+  --extrinsic-width: 24;
+  --extrinsic-height: 24;
+  --sprite-top: 0;
+  --sprite-left: 448;
+  --sprite-width: 48;
+  --sprite-height: 48;
+}
+.detail-icon_scroll {
+  --sprite-top: 0;
+}
+.detail-icon_flask {
+  --sprite-top: 48;
+}
+.detail-icon_warning {
+  --sprite-top: 96;
+}
+
+.song-icon,
+.instrument-icon {
+  --extrinsic-width: 32;
+  --extrinsic-height: 32;
+  --sprite-top: 0;
+  --sprite-left: 0;
+  --sprite-width: 64;
+  --sprite-height: 64;
+}
+.instrument-icon {
+  --sprite-top: 64;
+}
+.song-icon_the-power {
+  --sprite-left: 0;
+}
+.song-icon_old-time-battles {
+  --sprite-left: 64;
+}
+.song-icon_bard-dance {
+  --sprite-left: 128;
+}
+.song-icon_of-divinity-and-sin {
+  --sprite-left: 192;
+}
+.song-icon_sing-for-me {
+  --sprite-left: 256;
+}
+.song-icon_the-queens-high-seas {
+  --sprite-left: 320;
+}
+.instrument-icon_voice {
+  --sprite-left: 0;
+}
+.instrument-icon_flute {
+  --sprite-left: 64;
+}
+.instrument-icon_violin {
+  --sprite-left: 128;
+}
+.instrument-icon_lute {
+  --sprite-left: 192;
+}
+.instrument-icon_lyre {
+  --sprite-left: 256;
+}
+.instrument-icon_drum {
+  --sprite-left: 320;
+}
+.instrument-icon_spider-lyre {
+  --sprite-left: 384;
+}
+
+.control-button {
+  --extrinsic-width: 32;
+  --extrinsic-height: 32;
+  --sprite-top: 256;
+  --sprite-left: 0;
+  --sprite-width: 68;
+  --sprite-height: 68;
+}
+.control-button:not(:disabled) {
+  cursor: pointer;
+}
+.control-play {
+  --sprite-top: 256;
+}
+.control-pause {
+  --sprite-top: 324;
+}
+.control-button:hover {
+  --sprite-left: 68;
+}
+.control-button:active {
+  --sprite-left: 136;
+}
+.control-button:disabled {
+  --sprite-left: 204;
+}
+
 @media (min-width: 400px) {
-  img.spell {
-    width: 98px;
-    height: 98px;
+  .big-icon {
+    --extrinsic-width: 96;
+    --extrinsic-height: 96;
   }
 
   .title.title {
@@ -287,9 +446,9 @@ img.spell {
 }
 
 @media (min-width: 900px) {
-  img.spell {
-    width: 128px;
-    height: 128px;
+  .big-icon {
+    --extrinsic-width: 128;
+    --extrinsic-height: 128;
   }
 
   .title.title {
