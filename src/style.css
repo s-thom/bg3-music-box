@@ -3,7 +3,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 400;
-  src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro.ttf) format("truetype");
+  src: url(./fonts/QuadraatOffcPro/QuadraatOffcPro.ttf) format("truetype");
   unicode-range: U+000-5FF;
 }
 @font-face {
@@ -11,7 +11,8 @@
   font-style: italic;
   font-display: swap;
   font-weight: 400;
-  src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro-Italic.ttf) format("truetype");
+  src: url(./fonts/QuadraatOffcPro/QuadraatOffcPro-Italic.ttf)
+    format("truetype");
   unicode-range: U+000-5FF;
 }
 @font-face {
@@ -19,7 +20,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 600;
-  src: url(/fonts/QuadraatOffcPro/QuadraatOffcPro-Bold.ttf) format("truetype");
+  src: url(./fonts/QuadraatOffcPro/QuadraatOffcPro-Bold.ttf) format("truetype");
   unicode-range: U+000-5FF;
 }
 
@@ -282,7 +283,7 @@ fieldset {
   padding: 0;
   border: none;
 
-  background: url(/icons/spritesheet.png);
+  background: url(./img/spritesheet.png);
 
   --ratio-width: calc(var(--extrinsic-width) / var(--sprite-width));
   --ratio-height: calc(var(--extrinsic-height) / var(--sprite-height));

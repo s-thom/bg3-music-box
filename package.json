@@ -12,6 +12,7 @@
     "prettier": "^3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",
     "typescript": "^5.2.2",
+    "unplugin-inject-preload": "^1.1.1",
     "vite": "^5.0.0"
   }
 }
