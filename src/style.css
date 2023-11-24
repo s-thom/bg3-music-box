@@ -427,9 +427,12 @@ fieldset {
   cursor: pointer;
 }
 .control-play {
-  --sprite-top: 376;
+  --sprite-top: 308;
 }
 .control-pause {
+  --sprite-top: 376;
+}
+.control-prev {
   --sprite-top: 444;
 }
 .control-button:hover {

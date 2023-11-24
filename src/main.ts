@@ -21,19 +21,19 @@ function getAllAudio() {
 }
 
 function setControlsEnabledState(enabled: boolean) {
-  // const prevButton = document.querySelector("#controls-prev")!;
+  const prevButton = document.querySelector("#controls-prev")!;
   const playButton = document.querySelector("#controls-play")!;
 
   if (enabled) {
-    // prevButton.removeAttribute("disabled");
+    prevButton.removeAttribute("disabled");
     playButton.removeAttribute("disabled");
   } else {
-    // prevButton.setAttribute("disabled", "");
+    prevButton.setAttribute("disabled", "");
     playButton.setAttribute("disabled", "");
   }
 }
 
-function setIsPlaying(playing: boolean) {
+function setIsPlaying(playing: boolean, shouldTrack = true) {
   const previousIsPlaying = isPlaying;
   isPlaying = playing;
 
@@ -42,14 +42,14 @@ function setIsPlaying(playing: boolean) {
     playButton.classList.add("control-pause");
     playButton.classList.remove("control-play");
 
-    if (!previousIsPlaying) {
+    if (shouldTrack && !previousIsPlaying) {
       umami?.track("play", { song: currentSong });
     }
   } else {
     playButton.classList.remove("control-pause");
     playButton.classList.add("control-play");
 
-    if (previousIsPlaying) {
+    if (shouldTrack && previousIsPlaying) {
       umami?.track("pause", { song: currentSong });
     }
   }
@@ -60,6 +60,18 @@ function setIsPlaying(playing: boolean) {
     } else {
       audio.pause();
     }
+  });
+}
+
+function skipBackToStart() {
+  umami?.track("skip-back", { song: currentSong });
+
+  if (isPlaying) {
+    setIsPlaying(false, false);
+  }
+
+  getAllAudio().forEach((audio) => {
+    audio.currentTime = 0;
   });
 }
 
@@ -180,7 +192,7 @@ function attachListeners() {
   const instrumentCheckboxes = Array.from(
     document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
   );
-  // const prevButton = document.querySelector("#controls-prev")!;
+  const prevButton = document.querySelector("#controls-prev")!;
   const playButton = document.querySelector("#controls-play")!;
   const bigIcon = document.querySelector<HTMLAudioElement>("#big-icon")!;
 
@@ -199,6 +211,7 @@ function attachListeners() {
   );
 
   playButton.addEventListener("click", () => setIsPlaying(!isPlaying));
+  prevButton.addEventListener("click", () => skipBackToStart());
   bigIcon.addEventListener("click", () => cycleBigIcon());
 }
 
