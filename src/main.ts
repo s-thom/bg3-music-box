@@ -147,13 +147,22 @@ async function setSong(id: string) {
   }
 
   // Set up time display
-  const progressText = document.querySelector("#progress-text")!;
+  const progressMeter = document.querySelector("#progress-meter")!;
   const time1 = document.querySelector("#progress-text-1")!;
   const time2 = document.querySelector("#progress-text-2")!;
 
-  progressText.classList.remove("hidden");
-  time1.textContent = formatTime(0);
-  time2.textContent = formatTime(firstAudio.duration);
+  const startText = formatTime(0);
+  const fullLengthText = formatTime(firstAudio.duration);
+
+  progressMeter.setAttribute("aria-valuenow", "0");
+  progressMeter.setAttribute("aria-valuemax", firstAudio.duration.toString());
+  progressMeter.setAttribute(
+    "aria-valuetext",
+    `${startText} / ${fullLengthText}`
+  );
+
+  time1.textContent = startText;
+  time2.textContent = fullLengthText;
 
   // Set up progress tracking
   const progressBackground = document.querySelector<HTMLMeterElement>(
@@ -161,7 +170,17 @@ async function setSong(id: string) {
   )!;
   const duration = Math.ceil(firstAudio.duration);
   firstAudio.addEventListener("timeupdate", () => {
-    time1.textContent = formatTime(firstAudio.currentTime);
+    const durationText = formatTime(firstAudio.currentTime);
+
+    time1.textContent = durationText;
+    progressMeter.setAttribute(
+      "aria-valuenow",
+      firstAudio.currentTime.toString()
+    );
+    progressMeter.setAttribute(
+      "aria-valuetext",
+      `${durationText} / ${fullLengthText}`
+    );
 
     const durationPercent = (firstAudio.currentTime / duration) * 100;
     progressBackground.style.setProperty(

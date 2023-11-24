@@ -54,6 +54,12 @@
     <div id="app">
       <form class="tooltip" autocomplete="off">
         <h1 class="title">BG3 Music Box</h1>
+        <button
+          type="button"
+          aria-label="Change icon"
+          class="no-bleed sprite big-icon big-icon_bardic-inspiration"
+          id="big-icon"
+        ></button>
         <div class="item-text">
           <div class="sprite detail-icon detail-icon_scroll"></div>
           <p class="description">
@@ -104,26 +110,29 @@
             <div
               class="player-controls-section player-controls-section-progress"
             >
-              <div class="control-progress-wrapper">
+              <div
+                class="control-progress-wrapper"
+                id="progress-meter"
+                role="meter"
+                aria-valuenow="0"
+                aria-valuetext="0:00 / 0:00"
+                aria-valuemin="0"
+                aria-valuemax="0"
+                aria-label="Progress"
+              >
                 <div class="sprite control-progress"></div>
                 <div
                   class="sprite control-progress control-progress-fill"
                   id="controls-progress-fill"
                 ></div>
               </div>
-              <div id="progress-text" class="hidden">
-                <span id="progress-text-1"></span> /
-                <span id="progress-text-2"></span>
+              <div>
+                <span id="progress-text-1">-:--</span> /
+                <span id="progress-text-2">-:--</span>
               </div>
             </div>
           </div>
         </div>
-        <button
-          type="button"
-          aria-label="Change icon"
-          class="no-bleed sprite big-icon big-icon_bardic-inspiration"
-          id="big-icon"
-        ></button>
         <fieldset name="songs">
           <legend>
             <span class="text-highlight bold">Song:</span> Select one
