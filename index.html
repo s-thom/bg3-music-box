@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/images/bdinspiration.png" />
@@ -9,6 +9,23 @@
       name="description"
       content="Play Baldur's Gate 3's player instrument music"
     />
+    <link rel="canonical" href="https://bard.sthom.kiwi/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Baldur's Gate 3 Music Box" />
+    <meta
+      property="og:image"
+      content="https://bard.sthom.kiwi/images/social_2560.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="2560" />
+    <meta property="og:image:height" content="1280" />
+    <meta
+      property="og:image"
+      content="https://bard.sthom.kiwi/images/social_1280.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
     <!--__unplugin-inject-preload__-->
     <script type="module" src="/src/main.ts" async></script>
     <script
@@ -24,9 +41,9 @@
     <picture>
       <source
         srcset="
-          /images/BG3_Exploration_landscape_720.webp  1280w,
-          /images/BG3_Exploration_landscape_1080.webp 1920w,
-          /images/BG3_Exploration_landscape_2160.webp 3840w
+          /images/background_landscape_720.webp  1280w,
+          /images/background_landscape_1080.webp 1920w,
+          /images/background_landscape_2160.webp 3840w
         "
         sizes="(max-width: 3840px) 100vw, 3840px"
         type="image/webp"
@@ -34,10 +51,10 @@
       />
       <source
         srcset="
-          /images/BG3_Exploration_portrait_480.webp   480w,
-          /images/BG3_Exploration_portrait_720.webp   720w,
-          /images/BG3_Exploration_portrait_1200.webp 1200w,
-          /images/BG3_Exploration_portrait_1080.webp 1080w
+          /images/background_portrait_480.webp   480w,
+          /images/background_portrait_720.webp   720w,
+          /images/background_portrait_1200.webp 1200w,
+          /images/background_portrait_1080.webp 1080w
         "
         sizes="(max-width: 1080px) 100vw, 1080px"
         type="image/webp"
@@ -45,7 +62,7 @@
       />
       <img
         class="background"
-        src="/images/BG3_Exploration.jpg"
+        src="/images/background.jpg"
         alt=""
         fetchpriority="high"
       />
