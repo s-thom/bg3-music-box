@@ -47,6 +47,11 @@ body {
   margin: 0;
 }
 
+noscript {
+  display: block;
+  margin-top: 16px;
+}
+
 #app {
   max-width: 1280px;
   min-height: 100vh;
