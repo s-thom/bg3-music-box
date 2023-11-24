@@ -6,6 +6,7 @@ const BIG_ICONS = [
   "bardic-inspiration",
   "restore-bardic-inspiration",
   "song-of-rest",
+  "toss-a-coin",
 ];
 
 let isPlaying = false;

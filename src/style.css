@@ -334,6 +334,9 @@ fieldset {
 .big-icon_song-of-rest {
   --sprite-left: 256;
 }
+.big-icon_toss-a-coin {
+  --sprite-left: 384;
+}
 
 .detail-icon {
   --extrinsic-width: 24;
@@ -345,12 +348,19 @@ fieldset {
 }
 .detail-icon_scroll {
   --sprite-top: 0;
+  --sprite-left: 384;
 }
 .detail-icon_flask {
-  --sprite-top: 48;
+  --sprite-top: 0;
+  --sprite-left: 432;
 }
 .detail-icon_warning {
-  --sprite-top: 96;
+  --sprite-top: 48;
+  --sprite-left: 384;
+}
+.detail-icon_d20 {
+  --sprite-top: 48;
+  --sprite-left: 432;
 }
 
 .song-icon,
@@ -408,7 +418,7 @@ fieldset {
 .control-button {
   --extrinsic-width: 32;
   --extrinsic-height: 32;
-  --sprite-top: 256;
+  --sprite-top: 376;
   --sprite-left: 0;
   --sprite-width: 68;
   --sprite-height: 68;
@@ -417,10 +427,10 @@ fieldset {
   cursor: pointer;
 }
 .control-play {
-  --sprite-top: 256;
+  --sprite-top: 376;
 }
 .control-pause {
-  --sprite-top: 324;
+  --sprite-top: 444;
 }
 .control-button:hover {
   --sprite-left: 68;
