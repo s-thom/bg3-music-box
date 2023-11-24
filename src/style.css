@@ -95,16 +95,15 @@ img.background {
   background:
     linear-gradient(90deg, #2a2928 15%, #322f2b, #2a2928 85%) padding-box,
     conic-gradient(
-        #6d4629 0deg,
-        #8d602e,
-        #aa7536 40deg 45deg,
-        #624120 90deg,
-        #43220e 120deg,
-        #43220e 240deg,
-        #624120 270deg,
-        #aa7536 290deg 295deg,
-        #8d602e,
-        #6d4629 360deg
+        #b17f46 0deg,
+        #6e4a28 20deg 25deg,
+        #6a4626 90deg,
+        #6e4a28 155deg 160deg,
+        #b17f46 180deg,
+        #6e4a28 200deg 205deg,
+        #6a4626 270deg,
+        #6e4a28 325deg 330deg,
+        #b17f46 360deg
       )
       border-box;
   border: 2px solid transparent;
