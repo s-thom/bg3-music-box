@@ -563,6 +563,10 @@ summary > span {
   .player-controls-section {
     display: contents;
   }
+
+  fieldset {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* @media (prefers-contrast: more) {
