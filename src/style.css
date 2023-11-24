@@ -55,6 +55,7 @@ noscript {
 #app {
   max-width: 1280px;
   min-height: 100vh;
+  min-height: 100svh;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
@@ -129,6 +130,7 @@ img.background {
   margin: 8px 24px 8px 0;
   display: flex;
 }
+.footer-text .detail-icon,
 .item-text .detail-icon {
   flex-shrink: 0;
 }
@@ -136,7 +138,7 @@ img.background {
   margin: 0;
   margin-right: 16px;
   font-style: italic;
-  color: #717171;
+  color: #969696;
 }
 
 .noscript .description {
@@ -233,7 +235,7 @@ fieldset {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
   margin-top: 16px;
   background: radial-gradient(
       ellipse 80% 150% at bottom left,
@@ -261,11 +263,28 @@ fieldset {
   background: linear-gradient(to top, #3e284c60, transparent);
 }
 
-.footer-text {
-  height: 1em;
-  font-size: 0.8rem;
+summary {
+  display: flex;
+  align-items: center;
+}
+summary::marker {
+  display: none;
 }
 
+summary > span {
+  height: 20px;
+}
+
+.footer-text {
+  display: flex;
+  margin: 8px 0;
+}
+
+.footer-text > p {
+  margin: 0;
+}
+
+/* #region Sprites */
 /* 
   The spritesheet system probably needs explaining.
 
@@ -354,26 +373,25 @@ fieldset {
 .detail-icon {
   --extrinsic-width: 24;
   --extrinsic-height: 24;
-  --sprite-top: 0;
-  --sprite-left: 448;
+  --sprite-top: 256;
+  --sprite-left: 0;
   --sprite-width: 48;
   --sprite-height: 48;
 }
 .detail-icon_scroll {
-  --sprite-top: 0;
-  --sprite-left: 384;
+  --sprite-left: 0;
 }
 .detail-icon_flask {
-  --sprite-top: 0;
-  --sprite-left: 432;
+  --sprite-left: 48;
 }
 .detail-icon_warning {
-  --sprite-top: 48;
-  --sprite-left: 384;
+  --sprite-left: 96;
 }
 .detail-icon_d20 {
-  --sprite-top: 48;
-  --sprite-left: 432;
+  --sprite-left: 144;
+}
+.detail-icon_helm {
+  --sprite-left: 192;
 }
 
 .song-icon,
@@ -497,6 +515,7 @@ fieldset {
     0% 100%
   );
 }
+/* #endregion */
 
 @media (min-width: 400px) {
   .big-icon {
