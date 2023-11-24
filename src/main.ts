@@ -33,15 +33,24 @@ function setControlsEnabledState(enabled: boolean) {
 }
 
 function setIsPlaying(playing: boolean) {
+  const previousIsPlaying = isPlaying;
   isPlaying = playing;
 
   const playButton = document.querySelector("#controls-play")!;
   if (isPlaying) {
     playButton.classList.add("control-pause");
     playButton.classList.remove("control-play");
+
+    if (!previousIsPlaying) {
+      umami?.track("play", { song: currentSong });
+    }
   } else {
     playButton.classList.remove("control-pause");
     playButton.classList.add("control-play");
+
+    if (previousIsPlaying) {
+      umami?.track("pause", { song: currentSong });
+    }
   }
 
   getAllAudio().forEach((audio) => {
@@ -54,7 +63,7 @@ function setIsPlaying(playing: boolean) {
 }
 
 async function setSong(id: string) {
-  console.log("song", { id });
+  umami?.track("change-song", { song: id });
   setIsPlaying(false);
   currentSong = id;
 
@@ -117,10 +126,16 @@ async function setSong(id: string) {
 }
 
 function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
-  console.log("toggleInstrument", { id, isInstrumentPlaying });
-
   const audio = document.querySelector<HTMLAudioElement>(`#audio_${id}`)!;
-  audio.volume = isInstrumentPlaying ? 1 : 0;
+  if (isInstrumentPlaying) {
+    audio.volume = 1;
+
+    umami?.track("add-instrument", { instrument: id });
+  } else {
+    audio.volume = 0;
+
+    umami?.track("remove-instrument", { instrument: id });
+  }
 
   // Stop playing if there are no more instruments enabled
   const selectedInstrumentCheckboxes = Array.from(
@@ -153,6 +168,8 @@ function cycleBigIcon() {
 
   button.classList.remove(`big-icon_${currentIcon}`);
   button.classList.add(`big-icon_${nextIcon}`);
+
+  umami?.track("change-icon", { icon: nextIcon });
 }
 
 function attachListeners() {
