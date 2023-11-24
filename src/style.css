@@ -160,6 +160,7 @@ img.background {
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-top: 8px;
 }
 
 .player-controls-section {
@@ -167,6 +168,9 @@ img.background {
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+.player-controls-section-progress {
+  flex-direction: column;
 }
 
 .text-highlight {
@@ -532,7 +536,8 @@ fieldset {
     max-width: 500px;
   }
 
-  .player-controls {
+  .player-controls,
+  .player-controls-section-progress {
     flex-direction: row;
   }
 

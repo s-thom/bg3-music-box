@@ -12,6 +12,14 @@ const BIG_ICONS = [
 let isPlaying = false;
 let currentSong = "";
 
+function formatTime(numSeconds: number) {
+  const minutes = Math.floor(numSeconds / 60);
+  const seconds = Math.floor(numSeconds % 60);
+  const secondsString = seconds.toString().padStart(2, "0");
+
+  return `${minutes}:${secondsString}`;
+}
+
 function getAllAudio() {
   return Array.from(
     document
@@ -115,6 +123,7 @@ async function setSong(id: string) {
 
   setControlsEnabledState(false);
   const newAudio = await Promise.all(loadPromises);
+  const firstAudio = newAudio[0]!;
 
   // Don't proceed if user switched to another song during loading
   if (currentSong !== id) {
@@ -137,13 +146,23 @@ async function setSong(id: string) {
     setControlsEnabledState(true);
   }
 
+  // Set up time display
+  const progressText = document.querySelector("#progress-text")!;
+  const time1 = document.querySelector("#progress-text-1")!;
+  const time2 = document.querySelector("#progress-text-2")!;
+
+  progressText.classList.remove("hidden");
+  time1.textContent = formatTime(0);
+  time2.textContent = formatTime(firstAudio.duration);
+
   // Set up progress tracking
-  const firstAudio = newAudio[0]!;
   const progressBackground = document.querySelector<HTMLMeterElement>(
     "#controls-progress-fill"
   )!;
   const duration = Math.ceil(firstAudio.duration);
   firstAudio.addEventListener("timeupdate", () => {
+    time1.textContent = formatTime(firstAudio.currentTime);
+
     const durationPercent = (firstAudio.currentTime / duration) * 100;
     progressBackground.style.setProperty(
       "--fill-percent",

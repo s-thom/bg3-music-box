@@ -78,6 +78,10 @@
           </div>
         </noscript>
         <div class="callout no-bleed">
+          <div id="now-playing">
+            <span class="text-highlight bold">Playing:</span>
+            <span id="now-playing-text">Nothing, yet...</span>
+          </div>
           <div class="player-controls">
             <div class="player-controls-section">
               <button
@@ -97,26 +101,21 @@
                 <span class="visually-hidden">Play / Pause</span>
               </button>
             </div>
-            <div class="player-controls-section">
+            <div
+              class="player-controls-section player-controls-section-progress"
+            >
               <div class="control-progress-wrapper">
                 <div class="sprite control-progress"></div>
                 <div
                   class="sprite control-progress control-progress-fill"
                   id="controls-progress-fill"
                 ></div>
-                <meter
-                  id="controls-progress"
-                  class="visually-hidden"
-                  value="0"
-                  min="0"
-                  max="100"
-                ></meter>
+              </div>
+              <div id="progress-text" class="hidden">
+                <span id="progress-text-1"></span> /
+                <span id="progress-text-2"></span>
               </div>
             </div>
-          </div>
-          <div id="now-playing">
-            <span class="text-highlight bold">Playing:</span>
-            <span id="now-playing-text">Nothing, yet...</span>
           </div>
         </div>
         <button
