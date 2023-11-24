@@ -79,22 +79,40 @@
         </noscript>
         <div class="callout no-bleed">
           <div class="player-controls">
-            <button
-              type="button"
-              class="sprite control-button control-prev"
-              id="controls-prev"
-              disabled
-            >
-              <span class="visually-hidden">Skip backward</span>
-            </button>
-            <button
-              type="button"
-              class="sprite control-button control-play"
-              id="controls-play"
-              disabled
-            >
-              <span class="visually-hidden">Play / Pause</span>
-            </button>
+            <div class="player-controls-section">
+              <button
+                type="button"
+                class="sprite control-button control-prev"
+                id="controls-prev"
+                disabled
+              >
+                <span class="visually-hidden">Skip backward</span>
+              </button>
+              <button
+                type="button"
+                class="sprite control-button control-play"
+                id="controls-play"
+                disabled
+              >
+                <span class="visually-hidden">Play / Pause</span>
+              </button>
+            </div>
+            <div class="player-controls-section">
+              <div class="control-progress-wrapper">
+                <div class="sprite control-progress"></div>
+                <div
+                  class="sprite control-progress control-progress-fill"
+                  id="controls-progress-fill"
+                ></div>
+                <meter
+                  id="controls-progress"
+                  class="visually-hidden"
+                  value="0"
+                  min="0"
+                  max="100"
+                ></meter>
+              </div>
+            </div>
           </div>
           <div id="now-playing">
             <span class="text-highlight bold">Playing:</span>

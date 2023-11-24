@@ -156,6 +156,14 @@ img.background {
 
 .player-controls {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-controls-section {
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -251,6 +259,7 @@ fieldset {
 
 .footer-text {
   height: 1em;
+  font-size: 0.8rem;
 }
 
 /* 
@@ -280,7 +289,7 @@ fieldset {
       Used to properly scale the image.
 */
 .sprite {
-  --spritesheet-width: 512px;
+  --spritesheet-width: 1024px;
   --spritesheet-height: 512px;
 
   width: calc(var(--extrinsic-width) * 1px);
@@ -445,6 +454,46 @@ fieldset {
   --sprite-left: 204;
 }
 
+.control-progress-wrapper {
+  position: relative;
+}
+.control-progress {
+  position: relative;
+  z-index: 2;
+
+  --extrinsic-width: 238;
+  --extrinsic-height: 20;
+  --sprite-top: 432;
+  --sprite-left: 272;
+  --sprite-width: 536;
+  --sprite-height: 40;
+}
+.control-progress-fill {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+
+  --sprite-top: 472;
+
+  --fill-percent: 0;
+  --clip-bleed: 20;
+  --clip-inner-width: calc(var(--sprite-width) - (2 * var(--clip-bleed)));
+  --clip-inner-width-clipped: calc(
+    var(--clip-inner-width) * (var(--fill-percent) / 100)
+  );
+  --clip-outer-width: calc(var(--clip-bleed) + var(--clip-inner-width-clipped));
+  --clip-width-percent: calc(
+    (var(--clip-outer-width) * 100%) / var(--sprite-width)
+  );
+
+  clip-path: polygon(
+    0% 0%,
+    var(--clip-width-percent) 0%,
+    var(--clip-width-percent) 100%,
+    0% 100%
+  );
+}
+
 @media (min-width: 400px) {
   .big-icon {
     --extrinsic-width: 96;
@@ -481,6 +530,14 @@ fieldset {
   .tooltip {
     width: 500px;
     max-width: 500px;
+  }
+
+  .player-controls {
+    flex-direction: row;
+  }
+
+  .player-controls-section {
+    display: contents;
   }
 }
 

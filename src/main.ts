@@ -114,7 +114,7 @@ async function setSong(id: string) {
   });
 
   setControlsEnabledState(false);
-  await Promise.all(loadPromises);
+  const newAudio = await Promise.all(loadPromises);
 
   // Don't proceed if user switched to another song during loading
   if (currentSong !== id) {
@@ -136,6 +136,20 @@ async function setSong(id: string) {
   if (selectedInstrumentCheckboxes.length > 0) {
     setControlsEnabledState(true);
   }
+
+  // Set up progress tracking
+  const firstAudio = newAudio[0]!;
+  const progressBackground = document.querySelector<HTMLMeterElement>(
+    "#controls-progress-fill"
+  )!;
+  const duration = Math.ceil(firstAudio.duration);
+  firstAudio.addEventListener("timeupdate", () => {
+    const durationPercent = (firstAudio.currentTime / duration) * 100;
+    progressBackground.style.setProperty(
+      "--fill-percent",
+      durationPercent.toString()
+    );
+  });
 }
 
 function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
