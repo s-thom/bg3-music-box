@@ -1,16 +1,42 @@
 import "./style.css";
 
-const INSTRUMENTS = ["voice", "flute", "violin", "lute", "lyre", "drum"];
+const SONGS = [
+  "the-power",
+  "old-time-battles",
+  "bard-dance",
+  "of-divinity-and-sin",
+  "sing-for-me",
+  "the-queens-high-seas",
+] as const;
+type Song = (typeof SONGS)[number];
+
+const INSTRUMENTS = [
+  "voice",
+  "flute",
+  "violin",
+  "lute",
+  "lyre",
+  "drum",
+] as const;
+type Instrument = (typeof INSTRUMENTS)[number];
 
 const BIG_ICONS = [
   "bardic-inspiration",
   "restore-bardic-inspiration",
   "song-of-rest",
   "toss-a-coin",
-];
+] as const;
+
+interface StoredSettings {
+  bigIcon: (typeof BIG_ICONS)[number];
+  selectedSong: Song | "";
+  selectedInstruments: (typeof INSTRUMENTS)[number][];
+}
+
+const LOCAL_STORAGE_KEY = "bard-settings";
 
 let isPlaying = false;
-let currentSong = "";
+let selectedSong: Song | "" = "";
 
 function formatTime(numSeconds: number) {
   const minutes = Math.floor(numSeconds / 60);
@@ -27,6 +53,70 @@ function getAllAudio() {
       .querySelectorAll<HTMLAudioElement>("audio")
   );
 }
+
+function getInstrumentCheckboxes() {
+  return Array.from(
+    document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
+  );
+}
+
+// #region Settings
+function getStoredSettings(): StoredSettings | undefined {
+  const str = localStorage.getItem(LOCAL_STORAGE_KEY);
+  if (!str) {
+    return undefined;
+  }
+
+  try {
+    const value = JSON.parse(str);
+    return value;
+  } catch (err) {
+    return undefined;
+  }
+}
+
+function storeSettings(value: StoredSettings): void {
+  const str = JSON.stringify(value);
+  localStorage.setItem(LOCAL_STORAGE_KEY, str);
+}
+
+function updateSetting<K extends keyof StoredSettings>(
+  key: K,
+  value: StoredSettings[K]
+) {
+  let currentSettings = getStoredSettings();
+  if (!currentSettings) {
+    // There's nothing saved in state yet, so we need to get the current state and store that first
+
+    const bigIconButton =
+      document.querySelector<HTMLAudioElement>("#big-icon")!;
+    const bigIcon = BIG_ICONS.find((name) =>
+      bigIconButton.classList.contains(`big-icon_${name}`)
+    );
+
+    const selectedInstruments = getInstrumentCheckboxes().reduce<Instrument[]>(
+      (arr, curr) => {
+        if (curr.checked) {
+          arr.push(curr.value as Instrument);
+        }
+        return arr;
+      },
+      []
+    );
+
+    currentSettings = {
+      bigIcon: bigIcon ?? BIG_ICONS[0],
+      selectedSong,
+      selectedInstruments,
+    };
+  }
+
+  storeSettings({
+    ...currentSettings,
+    [key]: value,
+  });
+}
+// #endregion
 
 function setControlsEnabledState(enabled: boolean) {
   const prevButton = document.querySelector("#controls-prev")!;
@@ -51,14 +141,14 @@ function setIsPlaying(playing: boolean, shouldTrack = true) {
     playButton.classList.remove("control-play");
 
     if (shouldTrack && !previousIsPlaying) {
-      umami?.track("play", { song: currentSong });
+      umami?.track("play", { song: selectedSong });
     }
   } else {
     playButton.classList.remove("control-pause");
     playButton.classList.add("control-play");
 
     if (shouldTrack && previousIsPlaying) {
-      umami?.track("pause", { song: currentSong });
+      umami?.track("pause", { song: selectedSong });
     }
   }
 
@@ -72,7 +162,7 @@ function setIsPlaying(playing: boolean, shouldTrack = true) {
 }
 
 function skipBackToStart() {
-  umami?.track("skip-back", { song: currentSong });
+  umami?.track("skip-back", { song: selectedSong });
 
   if (isPlaying) {
     setIsPlaying(false, false);
@@ -83,10 +173,10 @@ function skipBackToStart() {
   });
 }
 
-async function setSong(id: string) {
+async function setSong(id: Song) {
   umami?.track("change-song", { song: id });
   setIsPlaying(false);
-  currentSong = id;
+  selectedSong = id;
 
   // Update label
   const songLabel = document.querySelector(`#label_${id}`);
@@ -126,14 +216,14 @@ async function setSong(id: string) {
   const firstAudio = newAudio[0]!;
 
   // Don't proceed if user switched to another song during loading
-  if (currentSong !== id) {
+  if (selectedSong !== id) {
     return;
   }
 
   // Turn on the instruments that have their checkboxes selected already
-  const selectedInstrumentCheckboxes = Array.from(
-    document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
-  ).filter((checkbox) => checkbox.checked);
+  const selectedInstrumentCheckboxes = getInstrumentCheckboxes().filter(
+    (checkbox) => checkbox.checked
+  );
   selectedInstrumentCheckboxes.forEach((instrumentCheckbox) => {
     const audio = document.querySelector<HTMLAudioElement>(
       `#audio_${instrumentCheckbox.value}`
@@ -188,6 +278,8 @@ async function setSong(id: string) {
       durationPercent.toString()
     );
   });
+
+  updateSetting("selectedSong", selectedSong);
 }
 
 function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
@@ -203,9 +295,9 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
   }
 
   // Stop playing if there are no more instruments enabled
-  const selectedInstrumentCheckboxes = Array.from(
-    document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
-  ).filter((checkbox) => checkbox.checked);
+  const selectedInstrumentCheckboxes = getInstrumentCheckboxes().filter(
+    (checkbox) => checkbox.checked
+  );
 
   if (!isInstrumentPlaying && selectedInstrumentCheckboxes.length === 0) {
     setIsPlaying(false);
@@ -213,9 +305,14 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
   }
 
   // Enable the controls if there is at least one instrument enabled and there's a song selected
-  if (selectedInstrumentCheckboxes.length > 0 && currentSong !== "") {
+  if (selectedInstrumentCheckboxes.length > 0 && selectedSong !== "") {
     setControlsEnabledState(true);
   }
+
+  updateSetting(
+    "selectedInstruments",
+    selectedInstrumentCheckboxes.map((checkbox) => checkbox.value as Instrument)
+  );
 }
 
 function cycleBigIcon() {
@@ -234,23 +331,22 @@ function cycleBigIcon() {
   button.classList.remove(`big-icon_${currentIcon}`);
   button.classList.add(`big-icon_${nextIcon}`);
 
+  updateSetting("bigIcon", nextIcon);
   umami?.track("change-icon", { icon: nextIcon });
 }
 
-function attachListeners() {
+function setup() {
   const songButtons = Array.from(
     document.querySelectorAll<HTMLInputElement>("input[name=song]")
   );
-  const instrumentCheckboxes = Array.from(
-    document.querySelectorAll<HTMLInputElement>("input[name=instrument]")
-  );
+  const instrumentCheckboxes = getInstrumentCheckboxes();
   const prevButton = document.querySelector("#controls-prev")!;
   const playButton = document.querySelector("#controls-play")!;
   const bigIcon = document.querySelector<HTMLAudioElement>("#big-icon")!;
 
   songButtons.forEach((button) =>
     button.addEventListener("change", (event) =>
-      setSong((event.target as HTMLInputElement).value)
+      setSong((event.target as HTMLInputElement).value as Song)
     )
   );
   instrumentCheckboxes.forEach((checkbox) =>
@@ -265,10 +361,37 @@ function attachListeners() {
   playButton.addEventListener("click", () => setIsPlaying(!isPlaying));
   prevButton.addEventListener("click", () => skipBackToStart());
   bigIcon.addEventListener("click", () => cycleBigIcon());
+
+  // Restore any saved settings
+  const initialSettings = getStoredSettings();
+  if (initialSettings) {
+    bigIcon.classList.remove(...BIG_ICONS.map((name) => `big-icon_${name}`));
+    bigIcon.classList.add(`big-icon_${initialSettings.bigIcon}`);
+
+    if (initialSettings.selectedSong !== "") {
+      songButtons.forEach((button) => {
+        if ((button.value as Song) === initialSettings.selectedSong) {
+          button.checked = true;
+          setSong(initialSettings.selectedSong);
+        }
+      });
+    }
+
+    instrumentCheckboxes.forEach((checkbox) => {
+      if (
+        initialSettings.selectedInstruments.includes(
+          checkbox.value as Instrument
+        )
+      ) {
+        checkbox.checked = true;
+        setInstrumentPlaying(checkbox.value, true);
+      }
+    });
+  }
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", attachListeners);
+  document.addEventListener("DOMContentLoaded", setup);
 } else {
-  attachListeners();
+  setup();
 }
