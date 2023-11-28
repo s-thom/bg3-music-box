@@ -2,7 +2,7 @@
 
 _All of the noise, none of the fun._
 
-[![An item tooltip titled "BG3 Music Box" representing the application](./public/images/social_2560.jpg)](https://bard.sthom.kiwi)
+[![An item tooltip titled "BG3 Music Box" representing the application](./public/images/social_1280.jpg)](https://bard.sthom.kiwi)
 
 A simple player for the bard songs in [Baldur's Gate 3](https://baldursgate3.game/). Select a song, select some instruments and play!
 
