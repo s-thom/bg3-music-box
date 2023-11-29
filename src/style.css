@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Adjusted Georgia Fallback";
+  src: local(Georgia);
+  size-adjust: 92%;
+  ascent-override: 102%;
+  descent-override: 45%;
+  line-gap-override: normal;
+}
+@font-face {
   font-family: "Quadraat Offc Pro";
   font-style: normal;
   font-display: swap;
@@ -33,7 +41,7 @@
 }
 
 :root {
-  font-family: "Quadraat Offc Pro", Garamond, Georgia, serif;
+  font-family: "Quadraat Offc Pro", "Adjusted Georgia Fallback", Georgia, serif;
   line-height: 1.5;
   font-weight: 400;
 
