@@ -6,7 +6,7 @@ export default defineConfig({
     UnpluginInjectPreload({
       files: [
         {
-          entryMatch: /spritesheet.png$/,
+          entryMatch: /spritesheet.webp$/,
         },
         {
           entryMatch: /QuadraatOffcPro[^\/]*\.woff2$/,
