@@ -314,14 +314,16 @@ async function setSong(id: Song) {
 
 function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
   const audio = document.querySelector<HTMLAudioElement>(`#audio_${id}`)!;
-  if (isInstrumentPlaying) {
-    audio.volume = 1;
+  if (audio) {
+    if (isInstrumentPlaying) {
+      audio.volume = 1;
 
-    umami?.track("add-instrument", { instrument: id });
-  } else {
-    audio.volume = 0;
+      umami?.track("add-instrument", { instrument: id });
+    } else {
+      audio.volume = 0;
 
-    umami?.track("remove-instrument", { instrument: id });
+      umami?.track("remove-instrument", { instrument: id });
+    }
   }
 
   // Stop playing if there are no more instruments enabled
