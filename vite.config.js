@@ -9,7 +9,7 @@ export default defineConfig({
           entryMatch: /spritesheet.png$/,
         },
         {
-          entryMatch: /QuadraatOffcPro[^\/]*\.ttf$/,
+          entryMatch: /QuadraatOffcPro[^\/]*\.woff2$/,
           attributes: {
             crossorigin: true
           }
