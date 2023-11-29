@@ -338,6 +338,13 @@ summary > span {
     calc(var(--spritesheet-height) * var(--ratio-height));
 }
 
+/* gap is just being used as a test. All browsers that support webp also support gap */
+@supports (gap: 1px) {
+  .sprite {
+    background: url(./img/spritesheet.webp);
+  }
+}
+
 .big-icon {
   position: absolute;
   top: 0;
