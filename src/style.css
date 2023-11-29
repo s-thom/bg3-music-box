@@ -209,15 +209,20 @@ fieldset {
 }
 
 .input:focus + .option,
-.option:hover {
+.input:not(:disabled) + .option:hover {
   border: 2px solid #232221;
   background: #1f1e1d40;
 }
 
-.option:active,
+.input:not(:disabled) + .option:active,
 .input:checked + .option {
   border: 2px solid #1f1e1d;
   background: #1f1e1d80;
+}
+
+.input:disabled + .option {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .input {
