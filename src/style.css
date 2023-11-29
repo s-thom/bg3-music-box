@@ -423,6 +423,12 @@ summary > span {
 .song-icon_the-queens-high-seas {
   --sprite-left: 320;
 }
+.song-icon_the-power-2 {
+  --sprite-left: 384;
+}
+.song-icon_music-box {
+  --sprite-left: 448;
+}
 .instrument-icon_voice {
   --sprite-left: 0;
 }

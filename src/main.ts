@@ -7,6 +7,7 @@ const SONGS = [
   "of-divinity-and-sin",
   "sing-for-me",
   "the-queens-high-seas",
+  "music-box",
 ] as const;
 type Song = (typeof SONGS)[number];
 
@@ -17,8 +18,23 @@ const INSTRUMENTS = [
   "lute",
   "lyre",
   "drum",
+  "ex",
 ] as const;
 type Instrument = (typeof INSTRUMENTS)[number];
+
+const defaultInstruments = INSTRUMENTS.filter(
+  (instrument) => instrument !== "ex"
+);
+
+const SONG_INSTRUMENTS: Record<Song, readonly Instrument[]> = {
+  "the-power": defaultInstruments,
+  "old-time-battles": defaultInstruments,
+  "bard-dance": defaultInstruments,
+  "of-divinity-and-sin": defaultInstruments,
+  "sing-for-me": defaultInstruments,
+  "the-queens-high-seas": defaultInstruments,
+  "music-box": ["ex"],
+};
 
 const BIG_ICONS = [
   "bardic-inspiration",
@@ -191,7 +207,8 @@ async function setSong(id: Song) {
       audio.remove();
     });
 
-  const loadPromises = INSTRUMENTS.map((instrument) => {
+  const songInstruments = SONG_INSTRUMENTS[id];
+  const loadPromises = songInstruments.map((instrument) => {
     let resolve: (audio: HTMLAudioElement) => void, reject: (err?: any) => void;
     const promise = new Promise<HTMLAudioElement>((res, rej) => {
       resolve = res;
@@ -212,6 +229,10 @@ async function setSong(id: Song) {
   });
 
   setControlsEnabledState(false);
+  getInstrumentCheckboxes().forEach((checkbox) => {
+    checkbox.disabled = !songInstruments.includes(checkbox.value as Instrument);
+  });
+
   const newAudio = await Promise.all(loadPromises);
   const firstAudio = newAudio[0]!;
 
@@ -222,7 +243,8 @@ async function setSong(id: Song) {
 
   // Turn on the instruments that have their checkboxes selected already
   const selectedInstrumentCheckboxes = getInstrumentCheckboxes().filter(
-    (checkbox) => checkbox.checked
+    (checkbox) =>
+      checkbox.checked && songInstruments.includes(checkbox.value as Instrument)
   );
   selectedInstrumentCheckboxes.forEach((instrumentCheckbox) => {
     const audio = document.querySelector<HTMLAudioElement>(
@@ -233,6 +255,14 @@ async function setSong(id: Song) {
 
   // Only enable playback buttons if there's an instrument selected
   if (selectedInstrumentCheckboxes.length > 0) {
+    setControlsEnabledState(true);
+  }
+
+  // Special hacky behaviour for the music box, since it's special
+  if (id === "music-box") {
+    newAudio.forEach((audio) => {
+      audio.volume = 1;
+    });
     setControlsEnabledState(true);
   }
 
