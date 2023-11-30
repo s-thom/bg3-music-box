@@ -259,11 +259,22 @@ async function setSong(id: Song) {
   }
 
   // Special hacky behaviour for the music box, since it's special
+  const selectAllButton = document.querySelector<HTMLButtonElement>(
+    "#instruments-select-all"
+  )!;
+  const selectNoneButton = document.querySelector<HTMLButtonElement>(
+    "#instruments-select-none"
+  )!;
   if (id === "music-box") {
     newAudio.forEach((audio) => {
       audio.volume = 1;
     });
     setControlsEnabledState(true);
+    selectAllButton.disabled = true;
+    selectNoneButton.disabled = true;
+  } else {
+    selectAllButton.disabled = false;
+    selectNoneButton.disabled = false;
   }
 
   // Set up time display
@@ -327,7 +338,8 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
   }
 
   // Stop playing if there are no more instruments enabled
-  const selectedInstrumentCheckboxes = getInstrumentCheckboxes().filter(
+  const instrumentCheckboxes = getInstrumentCheckboxes();
+  const selectedInstrumentCheckboxes = instrumentCheckboxes.filter(
     (checkbox) => checkbox.checked
   );
 
@@ -339,6 +351,17 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
   // Enable the controls if there is at least one instrument enabled and there's a song selected
   if (selectedInstrumentCheckboxes.length > 0 && selectedSong !== "") {
     setControlsEnabledState(true);
+  }
+
+  // Update select/deselect all buttons
+  const selectAllButton = document.querySelector("#instruments-select-all")!;
+  const selectNoneButton = document.querySelector("#instruments-select-none")!;
+  if (selectedInstrumentCheckboxes.length === instrumentCheckboxes.length) {
+    selectAllButton.classList.add("hidden");
+    selectNoneButton.classList.remove("hidden");
+  } else {
+    selectAllButton.classList.remove("hidden");
+    selectNoneButton.classList.add("hidden");
   }
 
   updateSetting(
@@ -375,6 +398,8 @@ function setup() {
   const prevButton = document.querySelector("#controls-prev")!;
   const playButton = document.querySelector("#controls-play")!;
   const bigIcon = document.querySelector<HTMLAudioElement>("#big-icon")!;
+  const selectAllButton = document.querySelector("#instruments-select-all")!;
+  const selectNoneButton = document.querySelector("#instruments-select-none")!;
 
   songButtons.forEach((button) =>
     button.addEventListener("change", (event) =>
@@ -393,6 +418,23 @@ function setup() {
   playButton.addEventListener("click", () => setIsPlaying(!isPlaying));
   prevButton.addEventListener("click", () => skipBackToStart());
   bigIcon.addEventListener("click", () => cycleBigIcon());
+
+  selectAllButton.addEventListener("click", () => {
+    instrumentCheckboxes.forEach((checkbox) => {
+      if (!checkbox.checked) {
+        checkbox.checked = true;
+        setInstrumentPlaying(checkbox.value, true);
+      }
+    });
+  });
+  selectNoneButton.addEventListener("click", () => {
+    instrumentCheckboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        checkbox.checked = false;
+        setInstrumentPlaying(checkbox.value, false);
+      }
+    });
+  });
 
   // Restore any saved settings
   const initialSettings = getStoredSettings();
@@ -419,6 +461,14 @@ function setup() {
         setInstrumentPlaying(checkbox.value, true);
       }
     });
+
+    const selectedInstrumentCheckboxes = instrumentCheckboxes.filter(
+      (checkbox) => checkbox.checked
+    );
+    if (selectedInstrumentCheckboxes.length === instrumentCheckboxes.length) {
+      selectAllButton.classList.add("hidden");
+      selectNoneButton.classList.remove("hidden");
+    }
   }
 }
 

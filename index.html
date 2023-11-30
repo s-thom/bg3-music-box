@@ -230,8 +230,20 @@
         </fieldset>
         <fieldset name="instruments">
           <legend>
-            <span class="text-highlight bold">Instruments:</span> Select one or
-            more
+            <span class="text-highlight bold">Instruments:</span>
+            Select one or more (<button
+              type="button"
+              id="instruments-select-all"
+              class="text-button text-highlight"
+            >
+              Select all</button
+            ><button
+              type="button"
+              id="instruments-select-none"
+              class="text-button text-highlight hidden"
+            >
+              Deselect all</button
+            >)
           </legend>
           <input
             class="input visually-hidden"

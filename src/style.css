@@ -194,8 +194,26 @@ img.background {
   color: #e6dba0;
   text-decoration: none;
 }
+
+button.text-highlight:not(:disabled):hover,
 a.text-highlight:hover {
   text-decoration: underline;
+}
+
+button.text-highlight:disabled {
+  color: #969696;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.text-button.input:not(:disabled) {
+  cursor: pointer;
 }
 
 .bold {
@@ -205,7 +223,7 @@ a.text-highlight:hover {
 fieldset {
   display: grid;
   margin: 0;
-  margin-top: 16px;
+  margin-top: 16px !important;
   padding: 0;
   gap: 8px;
   border: none;
@@ -221,7 +239,6 @@ fieldset {
   text-align: center;
   border: 2px solid transparent;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .input:focus + .option,
@@ -238,7 +255,10 @@ fieldset {
 
 .input:disabled + .option {
   opacity: 0.5;
-  cursor: default;
+}
+
+.input:not(:disabled) + .option {
+  cursor: pointer;
 }
 
 .input {
