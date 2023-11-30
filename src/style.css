@@ -212,7 +212,7 @@ button.text-highlight:disabled {
   font-size: inherit;
 }
 
-.text-button.input:not(:disabled) {
+.text-button:not(:disabled) {
   cursor: pointer;
 }
 
