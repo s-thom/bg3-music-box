@@ -1,11 +1,14 @@
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      timezone: "Pacific/Auckland"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "17:30"
+      interval: "monthly"
       timezone: "Pacific/Auckland"
     groups:
       all:
