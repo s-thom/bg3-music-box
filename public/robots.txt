@@ -22,7 +22,6 @@ User-agent: Cludo
 User-agent: ContentKing
 User-agent: CriteoBot
 User-agent: Diffbot
-User-agent: Dr. Link Check
 User-agent: DuckAssistBot
 User-agent: DuckAssistbot
 User-agent: EvoUptimeBot
