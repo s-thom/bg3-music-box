@@ -22,7 +22,6 @@ User-agent: Cludo
 User-agent: ContentKing
 User-agent: CriteoBot
 User-agent: Diffbot
-User-agent: Dr. Link Check
 User-agent: DuckAssistBot
 User-agent: DuckAssistbot
 User-agent: EvoUptimeBot
@@ -64,6 +63,7 @@ User-agent: Outbrain
 User-agent: PanguBot
 User-agent: Parse.ly
 User-agent: PerplexityBot
+User-agent: Perplexity‑User
 User-agent: PetalBot
 User-agent: Pingdom
 User-agent: PinterestBot
