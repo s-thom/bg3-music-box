@@ -60,6 +60,7 @@ User-agent: New Relic
 User-agent: Nodeping
 User-agent: OAI-SearchBot
 User-agent: Oh Dear
+User-agent: Onetrust CMP Scanner
 User-agent: Outbrain
 User-agent: PanguBot
 User-agent: Parse.ly
@@ -100,7 +101,6 @@ User-agent: YouBot
 User-agent: cohere-training-data-crawler
 User-agent: deadlinkchecker
 User-agent: eMoney Advisor
-User-agent: eRepublik.tools
 User-agent: elmah.io Uptime Monitoring
 User-agent: klaviyo
 User-agent: omgili
