@@ -1,3 +1,4 @@
+User-agent: 360Monitoring
 User-agent: AI2Bot
 User-agent: Adagio Bot
 User-agent: Alertsite by Smartbear
@@ -36,8 +37,10 @@ User-agent: Ghost Inspector
 User-agent: Google AdSense
 User-agent: Google AdsBot
 User-agent: Google Schema Markup Testing Tool
+User-agent: Google-CloudVertexBot
 User-agent: Google-Extended
 User-agent: GoogleOther
+User-agent: Grafana's Synthetic Monitoring
 User-agent: HetrixTools
 User-agent: HoneybadgerBot
 User-agent: HostTracker
@@ -47,7 +50,9 @@ User-agent: InternetArchiveBot
 User-agent: Jagged Pixel UptimeBot
 User-agent: Jetpack
 User-agent: Kangaroo Bot
+User-agent: LeikiBot
 User-agent: Macrobondbot
+User-agent: MagnetmeBot
 User-agent: MediaMonitoringBot
 User-agent: Medialogia Bot
 User-agent: Meta-ExternalAgent
