@@ -1,3 +1,4 @@
+User-agent: 360Monitoring
 User-agent: AI2Bot
 User-agent: Adagio Bot
 User-agent: Alertsite by Smartbear
@@ -15,20 +16,20 @@ User-agent: BlogVault
 User-agent: Bytespider
 User-agent: CCBot
 User-agent: ChatGPT-User
+User-agent: Checkly Bot
 User-agent: ClaudeBot
 User-agent: Clickagy
 User-agent: Cloudtrellis
 User-agent: Cludo
 User-agent: ContentKing
+User-agent: Cotoyogi
 User-agent: CriteoBot
 User-agent: Diffbot
-User-agent: Dr. Link Check
 User-agent: DuckAssistBot
 User-agent: DuckAssistbot
-User-agent: EvoUptimeBot
 User-agent: FacebookBot
 User-agent: Factset_spyderbot
-User-agent: Freshping
+User-agent: FedReporter Bot for FFIEC
 User-agent: FullStory
 User-agent: GPTBot
 User-agent: GTmetrix
@@ -36,8 +37,10 @@ User-agent: Ghost Inspector
 User-agent: Google AdSense
 User-agent: Google AdsBot
 User-agent: Google Schema Markup Testing Tool
+User-agent: Google-CloudVertexBot
 User-agent: Google-Extended
 User-agent: GoogleOther
+User-agent: Grafana's Synthetic Monitoring
 User-agent: HetrixTools
 User-agent: HoneybadgerBot
 User-agent: HostTracker
@@ -47,13 +50,16 @@ User-agent: InternetArchiveBot
 User-agent: Jagged Pixel UptimeBot
 User-agent: Jetpack
 User-agent: Kangaroo Bot
+User-agent: LeikiBot
 User-agent: Macrobondbot
+User-agent: MagnetmeBot
 User-agent: MediaMonitoringBot
 User-agent: Medialogia Bot
 User-agent: Meta-ExternalAgent
 User-agent: Meta-ExternalFetcher
 User-agent: MgidBot
 User-agent: Missinglettr Bot
+User-agent: MistralAI-User
 User-agent: NETVIGIE
 User-agent: New Relic
 User-agent: Nodeping
@@ -78,9 +84,12 @@ User-agent: Reelevant
 User-agent: RetroListeCOM
 User-agent: SE Ranking Bot
 User-agent: SalesViewerBot
+User-agent: SemrushBot-OCOB
+User-agent: Sentry Uptime Monitoring
 User-agent: Site24x7
 User-agent: Spectate
 User-agent: Splunk
+User-agent: Stape Scanner
 User-agent: StatsDroneBot
 User-agent: StatusCake
 User-agent: Swifteq Link Checker
@@ -90,7 +99,7 @@ User-agent: Timpibot
 User-agent: Trendiction Bot
 User-agent: UptimeRobot
 User-agent: Uptimia
-User-agent: WP Umbrella
+User-agent: WARDBot
 User-agent: WPMU DEV Broken Link Checker
 User-agent: WPMUDEV Uptime Monitor 5.0
 User-agent: Watchful
