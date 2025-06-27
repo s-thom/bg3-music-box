@@ -157,14 +157,14 @@ function setIsPlaying(playing: boolean, shouldTrack = true) {
     playButton.classList.remove("control-play");
 
     if (shouldTrack && !previousIsPlaying) {
-      umami?.track("play", { song: selectedSong });
+      window.umami?.track("play", { song: selectedSong });
     }
   } else {
     playButton.classList.remove("control-pause");
     playButton.classList.add("control-play");
 
     if (shouldTrack && previousIsPlaying) {
-      umami?.track("pause", { song: selectedSong });
+      window.umami?.track("pause", { song: selectedSong });
     }
   }
 
@@ -178,7 +178,7 @@ function setIsPlaying(playing: boolean, shouldTrack = true) {
 }
 
 function skipBackToStart() {
-  umami?.track("skip-back", { song: selectedSong });
+  window.umami?.track("skip-back", { song: selectedSong });
 
   if (isPlaying) {
     setIsPlaying(false, false);
@@ -190,7 +190,7 @@ function skipBackToStart() {
 }
 
 async function setSong(id: Song) {
-  umami?.track("change-song", { song: id });
+  window.umami?.track("change-song", { song: id });
   setIsPlaying(false);
   selectedSong = id;
 
@@ -329,11 +329,11 @@ function setInstrumentPlaying(id: string, isInstrumentPlaying: boolean) {
     if (isInstrumentPlaying) {
       audio.volume = 1;
 
-      umami?.track("add-instrument", { instrument: id });
+      window.umami?.track("add-instrument", { instrument: id });
     } else {
       audio.volume = 0;
 
-      umami?.track("remove-instrument", { instrument: id });
+      window.umami?.track("remove-instrument", { instrument: id });
     }
   }
 
@@ -387,7 +387,7 @@ function cycleBigIcon() {
   button.classList.add(`big-icon_${nextIcon}`);
 
   updateSetting("bigIcon", nextIcon);
-  umami?.track("change-icon", { icon: nextIcon });
+  window.umami?.track("change-icon", { icon: nextIcon });
 }
 
 function setup() {
