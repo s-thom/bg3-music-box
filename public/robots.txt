@@ -87,7 +87,6 @@ User-agent: LeikiBot
 User-agent: LinerBot
 User-agent: LinkupBot
 User-agent: MagnetmeBot
-User-agent: Manus Bot
 User-agent: MediaMonitoringBot
 User-agent: Mediatoolkitbot
 User-agent: Mediavine Medatada Parser
