@@ -102,6 +102,7 @@ User-agent: NETVIGIE
 User-agent: New Relic
 User-agent: Nodeping
 User-agent: NostoCrawlerBot
+User-agent: OAI-AdsBot
 User-agent: OAI-SearchBot
 User-agent: Oh Dear
 User-agent: Onetrust CMP Scanner
@@ -133,6 +134,7 @@ User-agent: ShapBot
 User-agent: Site24x7
 User-agent: SiteUpTimeBot
 User-agent: Slickstream
+User-agent: SmartologyBot
 User-agent: SolarWinds Observability
 User-agent: Spider
 User-agent: Splunk Synthetics
