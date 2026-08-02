@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Create robots.txt
-        uses: s-thom/create-robots-txt-action@v2
+        uses: s-thom/create-robots-txt-action@v3
         with:
           output-file: public/robots.txt
           append-allow-rule: true
@@ -25,19 +25,15 @@ jobs:
             Chrome-Lighthouse
           cloudflare-api-token: ${{ secrets.CLOUDFLARE_RADAR_API_TOKEN }}
           cloudflare-categories: |
-            AI Crawler
-            AI Search
-            AI Assistant
-            Search Engine Optinization
-            Advertising & Marketing
-            Monitoring & Analytics
-            Aggregator
-            Social Media Marketing
-          dark-visitors-api-token: ${{ secrets.DARK_VISITORS_API_TOKEN }}
-          dark-visitors-categories: |
-            AI Assistant
+            AI_CRAWLER
+            SEARCH_ENGINE_OPTIMIZATION
+            ADVERTISING_AND_MARKETING
+            MONITORING_AND_ANALYTICS
+            AGGREGATOR
+            SOCIAL_MEDIA_MARKETING
+          known-agents-api-token: ${{ secrets.DARK_VISITORS_API_TOKEN }}
+          known-agents-categories: |
             AI Data Scraper
-            AI Search Crawler
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
