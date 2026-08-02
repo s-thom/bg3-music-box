@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: "monthly"
       timezone: "Pacific/Auckland"
+    groups:
+      all:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -14,3 +20,5 @@ updates:
       all:
         patterns:
           - "*"
+    cooldown:
+      default-days: 7
